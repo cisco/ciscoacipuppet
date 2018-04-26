@@ -1,0 +1,20 @@
+#
+# TBD: Clean up after discussion with Puppet Labs
+#
+HOSTS:
+  "example.domain.com":
+     roles:
+      - "master"
+      - "proxy"
+     platform: ubuntu-1404-x86_64
+     ssh:
+      user: xxxxx
+      password: xxxxxxxxx
+     puppetbindir: "/opt/puppetlabs/bin/"
+     distmoduledir: "/etc/puppetlabs/code/environments/production/"
+     path: "/opt/puppetlabs/bin/"
+     aci_server_name: "xxxxx.domain.com"
+     aci_user: "xxxxxx"
+     aci_password: "xxxxxxx"
+     aci_ip: "x.x.x.x"
+CONFIG:

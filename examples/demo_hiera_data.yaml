@@ -1,0 +1,159 @@
+
+#
+#Demo Hiera data for class cisco_aci::classes::cisco_aci_fvtenant
+#
+cisco_aci::classes::cisco_aci_fvtenant::fvtenant_ensure: "present"
+cisco_aci::classes::cisco_aci_fvtenant::fvtenant_name: "test_tenant1"
+cisco_aci::classes::cisco_aci_fvtenant::fvtenant_descr: "My test tenant"
+cisco_aci::classes::cisco_aci_fvtenant::fvtenant_name_alias: "test_tenant_1"
+cisco_aci::classes::cisco_aci_fvtenant::fvtenant_owner_key: "admin_cisco"
+cisco_aci::classes::cisco_aci_fvtenant::fvtenant_owner_tag: "cisco"
+
+#
+#Demo Hiera data for class cisco_aci::classes::cisco_aci_fvap
+#
+cisco_aci::classes::cisco_aci_fvap::fvap_ensure: "present"
+cisco_aci::classes::cisco_aci_fvap::fvap_name: "test_app1"
+cisco_aci::classes::cisco_aci_fvap::fvap_fvtenant: "test_tenant1"
+cisco_aci::classes::cisco_aci_fvap::fvap_descr: "My test application profile tenant test_tenant1"
+cisco_aci::classes::cisco_aci_fvap::fvap_name_alias: "test_app_1"
+cisco_aci::classes::cisco_aci_fvap::fvap_owner_key: "admin_cisco"
+cisco_aci::classes::cisco_aci_fvap::fvap_owner_tag: "cisco"
+cisco_aci::classes::cisco_aci_fvap::fvap_prio: "level3"
+
+#
+#Demo Hiera data for class cisco_aci::classes::cisco_aci_fvbd
+#
+cisco_aci::classes::cisco_aci_fvbd::fvbd_ensure: "present"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_name: "test_bd1"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_fvtenant: "test_tenant1"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_arp_flood: "yes"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_descr: "My bridge domain in tenant test_tenant1"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_ep_clear: "no"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_ep_move_detect_mode: ""
+cisco_aci::classes::cisco_aci_fvbd::fvbd_intersite_bum_traffic_allow: "no"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_intersite_l2_stretch: "no"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_ip_learning: "yes"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_limit_ip_learn_to_subnets: "yes"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_ll_addr: "::"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_mac: "00:22:BD:F8:19:FF"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_mcast_allow: "yes"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_multi_dst_pkt_act: "encap-flood"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_name_alias: "test_bd_1"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_optimize_wan_bandwidth: "no"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_owner_key: "admin_cisco"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_owner_tag: "cisco"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_type: "regular"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_unicast_route: "yes"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_unk_mac_ucast_act: "proxy"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_unk_mcast_act: "opt-flood"
+cisco_aci::classes::cisco_aci_fvbd::fvbd_vmac: "not-applicable"
+
+#
+#Demo Hiera data for class cisco_aci::classes::cisco_aci_fvctx
+#
+cisco_aci::classes::cisco_aci_fvctx::fvctx_ensure: "present"
+cisco_aci::classes::cisco_aci_fvctx::fvctx_name: "test_vrf1"
+cisco_aci::classes::cisco_aci_fvctx::fvctx_fvtenant: "test_tenant1"
+cisco_aci::classes::cisco_aci_fvctx::fvctx_bd_enforced_enable: "no"
+cisco_aci::classes::cisco_aci_fvctx::fvctx_descr: "My VRF context in tenant test_tenant1"
+cisco_aci::classes::cisco_aci_fvctx::fvctx_knw_mcast_act: "permit"
+cisco_aci::classes::cisco_aci_fvctx::fvctx_name_alias: "test_vrf_1"
+cisco_aci::classes::cisco_aci_fvctx::fvctx_owner_key: "admin_cisco"
+cisco_aci::classes::cisco_aci_fvctx::fvctx_owner_tag: "cisco"
+cisco_aci::classes::cisco_aci_fvctx::fvctx_pc_enf_dir: "egress"
+cisco_aci::classes::cisco_aci_fvctx::fvctx_pc_enf_pref: "unenforced"
+
+#
+#Demo Hiera data for class cisco_aci::classes::cisco_aci_vzbrcp
+#
+cisco_aci::classes::cisco_aci_vzbrcp::vzbrcp_ensure: "present"
+cisco_aci::classes::cisco_aci_vzbrcp::vzbrcp_name: "test_contract1"
+cisco_aci::classes::cisco_aci_vzbrcp::vzbrcp_fvtenant: "test_tenant1"
+cisco_aci::classes::cisco_aci_vzbrcp::vzbrcp_descr: "My contract test_contract1 on my tenant test_tenant1"
+cisco_aci::classes::cisco_aci_vzbrcp::vzbrcp_name_alias: "test_contract_1"
+cisco_aci::classes::cisco_aci_vzbrcp::vzbrcp_owner_key: "admin_cisco"
+cisco_aci::classes::cisco_aci_vzbrcp::vzbrcp_owner_tag: "cisco"
+cisco_aci::classes::cisco_aci_vzbrcp::vzbrcp_prio: "level1"
+cisco_aci::classes::cisco_aci_vzbrcp::vzbrcp_scope: "global"
+cisco_aci::classes::cisco_aci_vzbrcp::vzbrcp_target_dscp: "CS3"
+
+#
+#Demo Hiera data for class cisco_aci::classes::cisco_aci_vzfilter
+#
+cisco_aci::classes::cisco_aci_vzfilter::vzfilter_ensure: "present"
+cisco_aci::classes::cisco_aci_vzfilter::vzfilter_name: "test_filter1"
+cisco_aci::classes::cisco_aci_vzfilter::vzfilter_fvtenant: "test_tenant1"
+cisco_aci::classes::cisco_aci_vzfilter::vzfilter_descr: "My filter test_filter1"
+cisco_aci::classes::cisco_aci_vzfilter::vzfilter_name_alias: "test_filter_1"
+cisco_aci::classes::cisco_aci_vzfilter::vzfilter_owner_key: "admin_cisco"
+cisco_aci::classes::cisco_aci_vzfilter::vzfilter_owner_tag: "cisco"
+
+#
+#Demo Hiera data for class cisco_aci::classes::cisco_aci_fvaepg
+#
+cisco_aci::classes::cisco_aci_fvaepg::fvaepg_ensure: "present"
+cisco_aci::classes::cisco_aci_fvaepg::fvaepg_name: "test_epg1"
+cisco_aci::classes::cisco_aci_fvaepg::fvaepg_fvtenant: "test_tenant1"
+cisco_aci::classes::cisco_aci_fvaepg::fvaepg_fvap: "test_app1"
+cisco_aci::classes::cisco_aci_fvaepg::fvaepg_descr: "My EPF test_epg1 in the application profile test_app1 in tenant test_tenant1"
+cisco_aci::classes::cisco_aci_fvaepg::fvaepg_fwd_ctrl: "proxy-arp"
+cisco_aci::classes::cisco_aci_fvaepg::fvaepg_is_attr_based_e_pg: "no"
+cisco_aci::classes::cisco_aci_fvaepg::fvaepg_match_t: "AtmostOne"
+cisco_aci::classes::cisco_aci_fvaepg::fvaepg_name_alias: "test_epg_1"
+cisco_aci::classes::cisco_aci_fvaepg::fvaepg_pc_enf_pref: "enforced"
+cisco_aci::classes::cisco_aci_fvaepg::fvaepg_pref_gr_memb: "include"
+cisco_aci::classes::cisco_aci_fvaepg::fvaepg_prio: "level2"
+
+#
+#Demo Hiera data for class cisco_aci::classes::cisco_aci_fvsubnet
+#
+cisco_aci::classes::cisco_aci_fvsubnet::fvsubnet_ensure: "present"
+cisco_aci::classes::cisco_aci_fvsubnet::fvsubnet_ip: "20.20.20.1/24"
+cisco_aci::classes::cisco_aci_fvsubnet::fvsubnet_fvtenant: "test_tenant1"
+cisco_aci::classes::cisco_aci_fvsubnet::fvsubnet_fvbd: "test_bd1"
+cisco_aci::classes::cisco_aci_fvsubnet::fvsubnet_ctrl: "nd,no-default-gateway,querier"
+cisco_aci::classes::cisco_aci_fvsubnet::fvsubnet_descr: "My subnet subnet1 in bridge domain test_bd1 in tenant test_tenant1"
+cisco_aci::classes::cisco_aci_fvsubnet::fvsubnet_name: "subnet1"
+cisco_aci::classes::cisco_aci_fvsubnet::fvsubnet_name_alias: "subnet_1"
+cisco_aci::classes::cisco_aci_fvsubnet::fvsubnet_preferred: "yes"
+cisco_aci::classes::cisco_aci_fvsubnet::fvsubnet_scope: "private,shared"
+cisco_aci::classes::cisco_aci_fvsubnet::fvsubnet_virtual: "yes"
+
+#
+#Demo Hiera data for class cisco_aci::classes::cisco_aci_vzentry
+#
+cisco_aci::classes::cisco_aci_vzentry::vzentry_ensure: "present"
+cisco_aci::classes::cisco_aci_vzentry::vzentry_name: "test_filter_entry1"
+cisco_aci::classes::cisco_aci_vzentry::vzentry_fvtenant: "test_tenant1"
+cisco_aci::classes::cisco_aci_vzentry::vzentry_vzfilter: "test_filter1"
+cisco_aci::classes::cisco_aci_vzentry::vzentry_apply_to_frag: "no"
+cisco_aci::classes::cisco_aci_vzentry::vzentry_arp_opc: "reply"
+cisco_aci::classes::cisco_aci_vzentry::vzentry_d_from_port: "unspecified"
+cisco_aci::classes::cisco_aci_vzentry::vzentry_d_to_port: "unspecified"
+cisco_aci::classes::cisco_aci_vzentry::vzentry_descr: "My filter entry test_filter_entry1 for filter test_filter1 in tenant test_tenant1"
+cisco_aci::classes::cisco_aci_vzentry::vzentry_ether_t: "arp"
+cisco_aci::classes::cisco_aci_vzentry::vzentry_icmpv4_t: "unspecified"
+cisco_aci::classes::cisco_aci_vzentry::vzentry_icmpv6_t: "unspecified"
+cisco_aci::classes::cisco_aci_vzentry::vzentry_match_dscp: "unspecified"
+cisco_aci::classes::cisco_aci_vzentry::vzentry_name_alias: "test_filter_entry_1"
+cisco_aci::classes::cisco_aci_vzentry::vzentry_prot: "unspecified"
+cisco_aci::classes::cisco_aci_vzentry::vzentry_s_from_port: "unspecified"
+cisco_aci::classes::cisco_aci_vzentry::vzentry_s_to_port: "unspecified"
+cisco_aci::classes::cisco_aci_vzentry::vzentry_stateful: "no"
+cisco_aci::classes::cisco_aci_vzentry::vzentry_tcp_rules: ""
+
+#
+#Demo Hiera data for class cisco_aci::classes::cisco_aci_vzsubj
+#
+cisco_aci::classes::cisco_aci_vzsubj::vzsubj_ensure: "present"
+cisco_aci::classes::cisco_aci_vzsubj::vzsubj_name: "test_subject1"
+cisco_aci::classes::cisco_aci_vzsubj::vzsubj_fvtenant: "test_tenant1"
+cisco_aci::classes::cisco_aci_vzsubj::vzsubj_vzbrcp: "test_contract1"
+cisco_aci::classes::cisco_aci_vzsubj::vzsubj_cons_match_t: "AtleastOne"
+cisco_aci::classes::cisco_aci_vzsubj::vzsubj_descr: "My subject test_subject1 for contract test_contract1 in tenant test_tenant1"
+cisco_aci::classes::cisco_aci_vzsubj::vzsubj_name_alias: "test_subject_1"
+cisco_aci::classes::cisco_aci_vzsubj::vzsubj_prio: "level3"
+cisco_aci::classes::cisco_aci_vzsubj::vzsubj_prov_match_t: "AtleastOne"
+cisco_aci::classes::cisco_aci_vzsubj::vzsubj_rev_flt_ports: "yes"
+cisco_aci::classes::cisco_aci_vzsubj::vzsubj_target_dscp: "CS3"
