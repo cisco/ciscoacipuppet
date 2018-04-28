@@ -1,4 +1,4 @@
-# aci_puppet_module
+# cisco_aci Puppet Module
 
 #### Table of Contents
 
