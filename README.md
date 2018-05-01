@@ -198,6 +198,7 @@ root@puppet-server:~ service puppetserver restart
 Contents of `/etc/puppetlabs/code/environments/production/manifests/site.pp`
 ```puppet
 node 'proxy-agent.example.com' {
+  include cisco_aci
   puppet_device {'apic.example.com':
     type             => 'apic',  # Specifies the type of the device in device.conf.
     url              => 'https://username:password@apic.example.com', # Specifies the URL of the device in device.conf.
