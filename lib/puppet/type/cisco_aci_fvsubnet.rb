@@ -35,7 +35,7 @@ Puppet::Type.newtype(:cisco_aci_fvsubnet) do
     patterns << [
       /^(\S+)$/,
       [
-        [:name, identity]
+        [:ip, identity]
       ],
     ]
     patterns
@@ -44,6 +44,10 @@ Puppet::Type.newtype(:cisco_aci_fvsubnet) do
   # ---------------------------------------------------------------
   # Namevars (Instance Identifiers)
   # ---------------------------------------------------------------
+
+  #Only needed to satisfy name parameter.
+  newparam(:name) do
+  end
 
   newparam(:ip, namevar: true) do
     desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#ip"
@@ -73,10 +77,6 @@ Puppet::Type.newtype(:cisco_aci_fvsubnet) do
 
   newproperty(:descr) do
     desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#descr"
-  end
-
-  newproperty(:name) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#name"
   end
 
   newproperty(:name_alias) do

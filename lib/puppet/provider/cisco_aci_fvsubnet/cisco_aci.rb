@@ -92,7 +92,6 @@ Puppet::Type.type(:cisco_aci_fvsubnet).provide(:cisco_aci) do
     [
         :ctrl,
         :descr,
-        :name,
         :name_alias,
         :preferred,
         :scope,
@@ -107,7 +106,6 @@ Puppet::Type.type(:cisco_aci_fvsubnet).provide(:cisco_aci) do
         :descr => 'descr',
         :dn => 'dn',
         :ip => 'ip',
-        :name => 'name',
         :name_alias => 'nameAlias',
         :preferred => 'preferred',
         :scope => 'scope',
@@ -184,6 +182,4 @@ Puppet::Type.type(:cisco_aci_fvsubnet).provide(:cisco_aci) do
   end
 
   mk_resource_methods_custom_setters
-
-
 end

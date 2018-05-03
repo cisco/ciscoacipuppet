@@ -208,8 +208,10 @@ module PuppetX
           instance_array = []
           mos = Puppet::Util::NetworkDevice.current.get(
                                           provider_class.mo_class_query_url)
+          namevar = provider_class.my_namevars[0]
           mos['imdata'].each do |mo|
             pt_attr_hash = self.xtract_attr_hash_frm_json(mo,provider_class)
+            pt_attr_hash.update({:name => pt_attr_hash[namevar]})
             pt_attr_hash.update({:ensure => :present})
             instance_array << provider_class.new(pt_attr_hash)
           end
