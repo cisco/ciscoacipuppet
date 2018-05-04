@@ -6,7 +6,7 @@
 # Puppet resource type that allows the administrator to send
 # HTTP POST/DELETE operations with specified raw JSON body formed
 # according to the specification in the ACI REST Programming Guide
-# [https://www.cisco.com/c/en/us/td/docs/switches/datacenter/aci/apic/sw/2-x/rest_cfg/2_1_x/b_Cisco_APIC_REST_API_Configuration_Guide/b_Cisco_APIC_REST_API_Configuration_Guide_chapter_01.html]
+# [http://cs.co/9002DdJJy]
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -66,7 +66,7 @@ Puppet::Type.newtype(:cisco_aci_rest) do
   # ---------------------------------------------------------------
 
   newparam(:name, namevar: true) do
-    desc "Name of the cisco_aci_rest resource"
+    desc 'Name of the cisco_aci_rest resource'
   end
 
   # ---------------------------------------------------------------
@@ -75,7 +75,7 @@ Puppet::Type.newtype(:cisco_aci_rest) do
 
   newproperty(:http_request_type) do
     desc "HTTP request methods to perform operations on objects.
-          Valid choices are post, delete and default. post is the 
+          Valid choices are post, delete and default. post is the
           default value."
     newvalues(:post, :delete, :default)
   end
@@ -84,7 +84,7 @@ Puppet::Type.newtype(:cisco_aci_rest) do
     desc "URI being used to execute API calls. Only JSON format is
           supported. Eg: '/api/mo/uni.json'."
     validate do |uri|
-      fail 'Only JSON URIs are supported' unless uri.end_with? ".json"
+      fail 'Only JSON URIs are supported' unless uri.end_with? '.json'
     end
   end
 

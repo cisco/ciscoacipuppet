@@ -1,5 +1,5 @@
 #
-# April 2018
+# May 2018
 #
 # Copyright (c) 2017-2018 Cisco and/or its affiliates.
 #
@@ -23,7 +23,7 @@ Puppet::Type.newtype(:cisco_aci_vzbrcp) do
   # ---------------------------------------------------------------
   # @doc entry to describe the resource and usage
   # ---------------------------------------------------------------
-  @doc = "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html"
+  @doc = 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html'
 
   ensurable
   apply_to_device
@@ -46,50 +46,46 @@ Puppet::Type.newtype(:cisco_aci_vzbrcp) do
   # ---------------------------------------------------------------
 
   newparam(:name, namevar: true) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#name"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#name'
   end
-
 
   # ---------------------------------------------------------------
   # Namevars (Parent Instance Identifiers)
   # ---------------------------------------------------------------
 
   newparam(:fvtenant, namevar: true) do
-    desc "Parent cisco_aci_fvtenant instance Identifier"
+    desc 'Parent cisco_aci_fvtenant instance Identifier'
   end
-
 
   # ---------------------------------------------------------------
   # Properties
   # ---------------------------------------------------------------
 
   newproperty(:descr) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#descr"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#descr'
   end
 
   newproperty(:name_alias) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#nameAlias"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#nameAlias'
   end
 
   newproperty(:owner_key) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#ownerKey"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#ownerKey'
   end
 
   newproperty(:owner_tag) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#ownerTag"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#ownerTag'
   end
 
   newproperty(:prio) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#prio"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#prio'
   end
 
   newproperty(:scope) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#scope"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#scope'
   end
 
   newproperty(:target_dscp) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#targetDscp"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#targetDscp'
   end
-
-
 end

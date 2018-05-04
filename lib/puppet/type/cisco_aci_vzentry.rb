@@ -1,5 +1,5 @@
 #
-# April 2018
+# May 2018
 #
 # Copyright (c) 2017-2018 Cisco and/or its affiliates.
 #
@@ -23,7 +23,7 @@ Puppet::Type.newtype(:cisco_aci_vzentry) do
   # ---------------------------------------------------------------
   # @doc entry to describe the resource and usage
   # ---------------------------------------------------------------
-  @doc = "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html"
+  @doc = 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html'
 
   ensurable
   apply_to_device
@@ -46,86 +46,82 @@ Puppet::Type.newtype(:cisco_aci_vzentry) do
   # ---------------------------------------------------------------
 
   newparam(:name, namevar: true) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#name"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#name'
   end
-
 
   # ---------------------------------------------------------------
   # Namevars (Parent Instance Identifiers)
   # ---------------------------------------------------------------
 
   newparam(:fvtenant, namevar: true) do
-    desc "Parent cisco_aci_fvtenant instance Identifier"
+    desc 'Parent cisco_aci_fvtenant instance Identifier'
   end
 
   newparam(:vzfilter, namevar: true) do
-    desc "Parent cisco_aci_vzfilter instance Identifier"
+    desc 'Parent cisco_aci_vzfilter instance Identifier'
   end
-
 
   # ---------------------------------------------------------------
   # Properties
   # ---------------------------------------------------------------
 
   newproperty(:apply_to_frag) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#applyToFrag"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#applyToFrag'
   end
 
   newproperty(:arp_opc) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#arpOpc"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#arpOpc'
   end
 
   newproperty(:d_from_port) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#dFromPort"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#dFromPort'
   end
 
   newproperty(:d_to_port) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#dToPort"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#dToPort'
   end
 
   newproperty(:descr) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#descr"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#descr'
   end
 
   newproperty(:ether_t) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#etherT"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#etherT'
   end
 
   newproperty(:icmpv4_t) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#icmpv4T"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#icmpv4T'
   end
 
   newproperty(:icmpv6_t) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#icmpv6T"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#icmpv6T'
   end
 
   newproperty(:match_dscp) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#matchDscp"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#matchDscp'
   end
 
   newproperty(:name_alias) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#nameAlias"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#nameAlias'
   end
 
   newproperty(:prot) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#prot"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#prot'
   end
 
   newproperty(:s_from_port) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#sFromPort"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#sFromPort'
   end
 
   newproperty(:s_to_port) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#sToPort"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#sToPort'
   end
 
   newproperty(:stateful) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#stateful"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#stateful'
   end
 
   newproperty(:tcp_rules) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#tcpRules"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#tcpRules'
   end
-
-
 end

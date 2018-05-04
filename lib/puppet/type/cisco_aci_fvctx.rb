@@ -1,5 +1,5 @@
 #
-# April 2018
+# May 2018
 #
 # Copyright (c) 2017-2018 Cisco and/or its affiliates.
 #
@@ -23,7 +23,7 @@ Puppet::Type.newtype(:cisco_aci_fvctx) do
   # ---------------------------------------------------------------
   # @doc entry to describe the resource and usage
   # ---------------------------------------------------------------
-  @doc = "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html"
+  @doc = 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html'
 
   ensurable
   apply_to_device
@@ -46,54 +46,50 @@ Puppet::Type.newtype(:cisco_aci_fvctx) do
   # ---------------------------------------------------------------
 
   newparam(:name, namevar: true) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#name"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#name'
   end
-
 
   # ---------------------------------------------------------------
   # Namevars (Parent Instance Identifiers)
   # ---------------------------------------------------------------
 
   newparam(:fvtenant, namevar: true) do
-    desc "Parent cisco_aci_fvtenant instance Identifier"
+    desc 'Parent cisco_aci_fvtenant instance Identifier'
   end
-
 
   # ---------------------------------------------------------------
   # Properties
   # ---------------------------------------------------------------
 
   newproperty(:bd_enforced_enable) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#bdEnforcedEnable"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#bdEnforcedEnable'
   end
 
   newproperty(:descr) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#descr"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#descr'
   end
 
   newproperty(:knw_mcast_act) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#knwMcastAct"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#knwMcastAct'
   end
 
   newproperty(:name_alias) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#nameAlias"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#nameAlias'
   end
 
   newproperty(:owner_key) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#ownerKey"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#ownerKey'
   end
 
   newproperty(:owner_tag) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#ownerTag"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#ownerTag'
   end
 
   newproperty(:pc_enf_dir) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#pcEnfDir"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#pcEnfDir'
   end
 
   newproperty(:pc_enf_pref) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#pcEnfPref"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#pcEnfPref'
   end
-
-
 end

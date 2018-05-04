@@ -21,7 +21,7 @@ module PuppetX
       # Note: This method is used as is from the ACIrb Gem
       #
       # @parm options [Hash] options used to specify connectivity attributes
-      #(default: {}):
+      # (default: {}):
       #
       #           :url - string URL of APIC, e.g., https://apic (required)
       #           :user - string containing User ID for authentication (required)
@@ -38,9 +38,9 @@ module PuppetX
       #                          password: 'password', format: 'json',
       #                          debug: false)
       #
-      def initialize(options = {})
+      def initialize(options={})
         uri = URI.parse(options[:url])
-        @baseurl = '%s://%s:%s' % [uri.scheme, uri.host, uri.port]
+        @baseurl = "#{uri.scheme}://#{uri.host}:#{uri.port}"
         @format = options[:format] ? options[:format] : 'xml'
         @user = options[:user]
         @password = options[:password]
@@ -75,11 +75,13 @@ module PuppetX
         response = @client.post(post_url, body: builder.to_xml)
         puts 'POST RESPONSE: ', response.body if @debug
         doc = Nokogiri::XML(response.body)
-        fail ApicAuthenticationError, 'Authentication error(%s): %s' % \
-              [doc.at_css('error')['code'], doc.at_css('error')['text']] \
-              if doc.at_css('error')
-        fail ApicErrorResponse, 'Unexpected HTTP Error response code(%s): \
-              %s' % [response.code, response.body] if response.code != 200
+        fail ApicAuthenticationError,
+             sprintf('Authentication error(%s): %s',
+                     doc.at_css('error')['code'], doc.at_css('error')['text']) \
+          if doc.at_css('error')
+        fail ApicErrorResponse,
+             sprintf('Unexpected HTTP Error response code(%s): %s',
+                     response.code, response.body) if response.code != 200
         @auth_cookie = doc.at_css('aaaLogin')['token']
         @refresh_time = doc.at_css('aaaLogin')['refreshTimeoutSeconds']
       end
@@ -90,7 +92,7 @@ module PuppetX
       #   @auth_cookie - session cookie
       #   @refresh_time - session refresh timeout in seconds
       #
-      #Note: This method is used as is from the ACIrb Gem
+      # Note: This method is used as is from the ACIrb Gem
       #
       # Returns nothing.
       #
@@ -100,7 +102,9 @@ module PuppetX
         response = @client.get(get_url)
         puts 'GET RESPONSE: ', response.body if @debug
         doc = Nokogiri::XML(response.body)
-        fail ApicAuthenticationError, 'Authentication error(%s): %s' % [doc.at_css('error')['code'], doc.at_css('error')['text']] \
+        fail ApicAuthenticationError,
+             sprintf('Authentication error(%s): %s', doc.at_css('error')['code'],
+                     doc.at_css('error')['text']) \
           if doc.at_css('error')
         @auth_cookie = doc.at_css('aaaLogin')['token']
         @refresh_time = doc.at_css('aaaLogin')['refreshTimeoutSeconds']
@@ -114,7 +118,7 @@ module PuppetX
       # Returns escaped URI as string
       #
       def escape(uri)
-        return URI.encode(uri, /[^\-_.!~*'()a-zA-Z\d;\/?:@&=+$,]/)
+        URI.encode(uri, %r{^\-_.!~*'()a-zA-Z\d;\/?:@&=+$,})
       end
 
       # Posts data to the APIC REST interface
@@ -126,8 +130,8 @@ module PuppetX
       #
       # Returns results of POST after parsing for error
       #
-      def post(url:,json_body:)
-        post_url = self.escape(@baseurl.to_s + url.to_s)
+      def post(url:, json_body:)
+        post_url = escape(@baseurl.to_s + url.to_s)
 
         puts 'POST REQUEST', post_url if @debug
         puts 'POST BODY', json_body if @debug
@@ -145,7 +149,7 @@ module PuppetX
       # Returns results of POST after parsing for error
       #
       def get(url:)
-        get_url = self.escape(@baseurl.to_s + url.to_s)
+        get_url = escape(@baseurl.to_s + url.to_s)
 
         puts 'GET REQUEST', get_url if @debug
         response = @client.get(get_url)
@@ -165,10 +169,11 @@ module PuppetX
       #                     well formed APIC response payload (required)
       #
       def parse_error(doc)
-          fail ApicErrorResponse, 'Error response from APIC (%s): "%s"' % \
-            [doc['imdata'][0]['error']['attributes']['code'].to_s, \
-             doc['imdata'][0]['error']['attributes']['text'].to_s] \
-             if doc['imdata'].length > 0 && doc['imdata'][0].include?('error')
+        fail ApicErrorResponse,
+             sprintf('Error response from APIC (%s): "%s"',
+                     doc['imdata'][0]['error']['attributes']['code'].to_s,
+                     doc['imdata'][0]['error']['attributes']['text'].to_s) \
+          if doc['imdata'].length > 0 && doc['imdata'][0].include?('error')
       end
 
       # Parse response from APIC for errors and return JSON payload
@@ -179,19 +184,19 @@ module PuppetX
       # @param response [JSON] JSON response from APIC
       #
       def parse_response(response)
-          #Assume JSON response
-          json_data = response.body
-          doc = JSON.parse(json_data)
-          parse_error(doc)
-          return doc
+        # Assume JSON response
+        json_data = response.body
+        doc = JSON.parse(json_data)
+        parse_error(doc)
+        doc
       end
 
-      #Delete MO identified by url
+      # Delete MO identified by url
       #
       # @param url [String] URL for MO instance to be deleted
       #
       def delete(url:)
-        delete_url = self.escape(@baseurl.to_s + url.to_s)
+        delete_url = escape(@baseurl.to_s + url.to_s)
 
         puts 'DELETE REQUEST', delete_url if @debug
         response = @client.delete(delete_url)
@@ -199,7 +204,6 @@ module PuppetX
 
         parse_response(response)
       end
-
     end
   end
 end

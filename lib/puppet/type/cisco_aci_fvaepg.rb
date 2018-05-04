@@ -1,5 +1,5 @@
 #
-# April 2018
+# May 2018
 #
 # Copyright (c) 2017-2018 Cisco and/or its affiliates.
 #
@@ -23,7 +23,7 @@ Puppet::Type.newtype(:cisco_aci_fvaepg) do
   # ---------------------------------------------------------------
   # @doc entry to describe the resource and usage
   # ---------------------------------------------------------------
-  @doc = "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html"
+  @doc = 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html'
 
   ensurable
   apply_to_device
@@ -46,58 +46,54 @@ Puppet::Type.newtype(:cisco_aci_fvaepg) do
   # ---------------------------------------------------------------
 
   newparam(:name, namevar: true) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#name"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#name'
   end
-
 
   # ---------------------------------------------------------------
   # Namevars (Parent Instance Identifiers)
   # ---------------------------------------------------------------
 
   newparam(:fvtenant, namevar: true) do
-    desc "Parent cisco_aci_fvtenant instance Identifier"
+    desc 'Parent cisco_aci_fvtenant instance Identifier'
   end
 
   newparam(:fvap, namevar: true) do
-    desc "Parent cisco_aci_fvap instance Identifier"
+    desc 'Parent cisco_aci_fvap instance Identifier'
   end
-
 
   # ---------------------------------------------------------------
   # Properties
   # ---------------------------------------------------------------
 
   newproperty(:descr) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#descr"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#descr'
   end
 
   newproperty(:fwd_ctrl) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#fwdCtrl"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#fwdCtrl'
   end
 
   newproperty(:is_attr_based_e_pg) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#isAttrBasedEPg"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#isAttrBasedEPg'
   end
 
   newproperty(:match_t) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#matchT"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#matchT'
   end
 
   newproperty(:name_alias) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#nameAlias"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#nameAlias'
   end
 
   newproperty(:pc_enf_pref) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#pcEnfPref"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#pcEnfPref'
   end
 
   newproperty(:pref_gr_memb) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#prefGrMemb"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#prefGrMemb'
   end
 
   newproperty(:prio) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#prio"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#prio'
   end
-
-
 end

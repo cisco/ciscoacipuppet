@@ -21,5 +21,12 @@
 
 require 'puppet/util/network_device/base'
 
-module Puppet::Util::NetworkDevice::Apic
+module Puppet
+  module Util
+    module NetworkDevice
+      # Module for Network Device type Apic
+      module Apic
+      end
+    end
+  end
 end

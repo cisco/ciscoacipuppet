@@ -1,5 +1,5 @@
 #
-# April 2018
+# May 2018
 #
 # Copyright (c) 2017-2018 Cisco and/or its affiliates.
 #
@@ -23,7 +23,7 @@ Puppet::Type.newtype(:cisco_aci_vzsubj) do
   # ---------------------------------------------------------------
   # @doc entry to describe the resource and usage
   # ---------------------------------------------------------------
-  @doc = "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html"
+  @doc = 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html'
 
   ensurable
   apply_to_device
@@ -46,54 +46,50 @@ Puppet::Type.newtype(:cisco_aci_vzsubj) do
   # ---------------------------------------------------------------
 
   newparam(:name, namevar: true) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#name"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#name'
   end
-
 
   # ---------------------------------------------------------------
   # Namevars (Parent Instance Identifiers)
   # ---------------------------------------------------------------
 
   newparam(:fvtenant, namevar: true) do
-    desc "Parent cisco_aci_fvtenant instance Identifier"
+    desc 'Parent cisco_aci_fvtenant instance Identifier'
   end
 
   newparam(:vzbrcp, namevar: true) do
-    desc "Parent cisco_aci_vzbrcp instance Identifier"
+    desc 'Parent cisco_aci_vzbrcp instance Identifier'
   end
-
 
   # ---------------------------------------------------------------
   # Properties
   # ---------------------------------------------------------------
 
   newproperty(:cons_match_t) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#consMatchT"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#consMatchT'
   end
 
   newproperty(:descr) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#descr"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#descr'
   end
 
   newproperty(:name_alias) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#nameAlias"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#nameAlias'
   end
 
   newproperty(:prio) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#prio"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#prio'
   end
 
   newproperty(:prov_match_t) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#provMatchT"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#provMatchT'
   end
 
   newproperty(:rev_flt_ports) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#revFltPorts"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#revFltPorts'
   end
 
   newproperty(:target_dscp) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#targetDscp"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#targetDscp'
   end
-
-
 end

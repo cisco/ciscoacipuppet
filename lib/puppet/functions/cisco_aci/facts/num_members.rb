@@ -18,7 +18,6 @@
 # limitations under the License.
 
 Puppet::Functions.create_function(:'cisco_aci::facts::num_members') do
-
   # Retrieve aci fabric member count
   #
   # @return [Integer] ACI fabric member count
@@ -27,10 +26,10 @@ Puppet::Functions.create_function(:'cisco_aci::facts::num_members') do
   #   cisco_aci::facts::num_members
   #
   # NOTE: This is a helper method and is not intended to be called directly.
-  dispatch :get_size do
+  dispatch :size do
   end
 
-  def get_size()
+  def size
     scope = closure_scope
     scope['facts']['aci_fabric_members'].size
   end
