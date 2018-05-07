@@ -37,7 +37,7 @@ class cisco_aci::classes::cisco_aci_rest_only (
   ) {
   class {'cisco_aci::classes::cisco_aci_rest':
     override_http_request_type => $override_http_request_type,
-    override_resource_uri => $override_resource_uri,
+    override_resource_uri      => $override_resource_uri,
     override_http_request_body => $override_http_request_body
   }
 }

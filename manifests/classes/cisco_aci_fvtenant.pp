@@ -42,12 +42,12 @@ class cisco_aci::classes::cisco_aci_fvtenant (
     $override_descr = $fvtenant_descr,
 ) {
     cisco_aci_fvtenant {'deploy_fvtenant':
-          ensure => $override_ensure,
-          name => $fvtenant_name,
-          descr => $override_descr,
+          ensure     => 'present',
+          name       => $fvtenant_name,
+          descr      => $fvtenant_descr,
           name_alias => $fvtenant_name_alias,
-          owner_key => $fvtenant_owner_key,
-          owner_tag => $fvtenant_owner_tag,
-      }
+          owner_key  => $fvtenant_owner_key,
+          owner_tag  => $fvtenant_owner_tag,
+  }
 
 }

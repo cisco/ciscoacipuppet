@@ -46,16 +46,15 @@ class cisco_aci::classes::cisco_aci_vzbrcp (
     $override_descr = $vzbrcp_descr,
 ) {
     cisco_aci_vzbrcp {'deploy_vzbrcp':
-          ensure => $override_ensure,
-          name => $vzbrcp_name,
-          fvtenant => $vzbrcp_fvtenant,
-          descr => $override_descr,
-          name_alias => $vzbrcp_name_alias,
-          owner_key => $vzbrcp_owner_key,
-          owner_tag => $vzbrcp_owner_tag,
-          prio => $vzbrcp_prio,
-          scope => $vzbrcp_scope,
+          ensure      => 'present',
+          name        => $vzbrcp_name,
+          descr       => $vzbrcp_descr,
+          name_alias  => $vzbrcp_name_alias,
+          owner_key   => $vzbrcp_owner_key,
+          owner_tag   => $vzbrcp_owner_tag,
+          prio        => $vzbrcp_prio,
+          scope       => $vzbrcp_scope,
           target_dscp => $vzbrcp_target_dscp,
-      }
+  }
 
 }

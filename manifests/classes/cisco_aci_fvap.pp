@@ -44,14 +44,13 @@ class cisco_aci::classes::cisco_aci_fvap (
     $override_descr = $fvap_descr,
 ) {
     cisco_aci_fvap {'deploy_fvap':
-          ensure => $override_ensure,
-          name => $fvap_name,
-          fvtenant => $fvap_fvtenant,
-          descr => $override_descr,
+          ensure     => 'present',
+          name       => $fvap_name,
+          descr      => $fvap_descr,
           name_alias => $fvap_name_alias,
-          owner_key => $fvap_owner_key,
-          owner_tag => $fvap_owner_tag,
-          prio => $fvap_prio,
-      }
+          owner_key  => $fvap_owner_key,
+          owner_tag  => $fvap_owner_tag,
+          prio       => $fvap_prio,
+  }
 
 }

@@ -43,13 +43,12 @@ class cisco_aci::classes::cisco_aci_vzfilter (
     $override_descr = $vzfilter_descr,
 ) {
     cisco_aci_vzfilter {'deploy_vzfilter':
-          ensure => $override_ensure,
-          name => $vzfilter_name,
-          fvtenant => $vzfilter_fvtenant,
-          descr => $override_descr,
+          ensure     => 'present',
+          name       => $vzfilter_name,
+          descr      => $vzfilter_descr,
           name_alias => $vzfilter_name_alias,
-          owner_key => $vzfilter_owner_key,
-          owner_tag => $vzfilter_owner_tag,
-      }
+          owner_key  => $vzfilter_owner_key,
+          owner_tag  => $vzfilter_owner_tag,
+  }
 
 }

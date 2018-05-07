@@ -47,17 +47,15 @@ class cisco_aci::classes::cisco_aci_vzsubj (
     $override_descr = $vzsubj_descr,
 ) {
     cisco_aci_vzsubj {'deploy_vzsubj':
-          ensure => $override_ensure,
-          name => $vzsubj_name,
-          fvtenant => $vzsubj_fvtenant,
-          vzbrcp => $vzsubj_vzbrcp,
-          cons_match_t => $vzsubj_cons_match_t,
-          descr => $override_descr,
-          name_alias => $vzsubj_name_alias,
-          prio => $vzsubj_prio,
-          prov_match_t => $vzsubj_prov_match_t,
+          ensure        => 'present',
+          name          => $vzsubj_name,
+          cons_match_t  => $vzsubj_cons_match_t,
+          descr         => $vzsubj_descr,
+          name_alias    => $vzsubj_name_alias,
+          prio          => $vzsubj_prio,
+          prov_match_t  => $vzsubj_prov_match_t,
           rev_flt_ports => $vzsubj_rev_flt_ports,
-          target_dscp => $vzsubj_target_dscp,
-      }
+          target_dscp   => $vzsubj_target_dscp,
+  }
 
 }
