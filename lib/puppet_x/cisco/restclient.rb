@@ -118,7 +118,7 @@ module PuppetX
       # Returns escaped URI as string
       #
       def escape(uri)
-        URI.encode(uri, %r{^\-_.!~*'()a-zA-Z\d;\/?:@&=+$,})
+        URI.encode(uri, %r{[^\-_.!~*'()a-zA-Z\d;\/?:@&=+$,]})
       end
 
       # Posts data to the APIC REST interface
