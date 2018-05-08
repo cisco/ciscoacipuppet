@@ -6,8 +6,8 @@ require 'uri'
 # Class with utility methods to communicate with an APIC Device
 module Puppet
   module Util
-    module NetworkDevice
-      module Apic
+    class NetworkDevice
+      class Apic
         # Class with utility methods to communicate with an APIC Device
         class Device
           attr_accessor :url, :rest, :apicuri, :user, :password, :debug, :session
