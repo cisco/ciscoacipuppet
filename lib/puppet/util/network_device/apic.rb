@@ -23,9 +23,9 @@ require 'puppet/util/network_device/base'
 
 module Puppet
   module Util
-    module NetworkDevice
-      # Module for Network Device type Apic
-      module Apic
+    class NetworkDevice
+      # Class for Network Device type Apic
+      class Apic
       end
     end
   end
