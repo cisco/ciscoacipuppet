@@ -286,7 +286,7 @@ module PuppetX
             one_dhcp_clnt_json['dhcpClient']['attributes']['nodeRole'] == 'spine')
           # create an NodeID => Node Details Hash
           attrs = one_dhcp_clnt_json['dhcpClient']['attributes']
-          { id => attrs }
+          { attrs['id'] => attrs }
         end
       end
 
