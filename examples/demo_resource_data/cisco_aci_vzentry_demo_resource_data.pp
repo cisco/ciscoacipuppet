@@ -4,8 +4,8 @@
 cisco_aci_vzentry { 'test_filter_entry1':
   ensure        => 'present',
   name          => 'test_filter_entry1', #Instance Identifier
-  fvtenant      => 'test_tenant1', #Parent cisco_aci_{{item['p_name']}} Identifier
-  vzfilter      => 'test_filter1', #Parent cisco_aci_{{item['p_name']}} Identifier
+  fvtenant      => 'test_tenant1', #Parent cisco_aci_fvtenant Identifier
+  vzfilter      => 'test_filter1', #Parent cisco_aci_vzfilter Identifier
   apply_to_frag => 'no',
   arp_opc       => 'reply',
   d_from_port   => 'unspecified',

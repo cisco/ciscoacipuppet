@@ -4,7 +4,7 @@
 cisco_aci_fvbd { 'test_bd1':
   ensure                      => 'present',
   name                        => 'test_bd1', #Instance Identifier
-  fvtenant                    => 'test_tenant1', #Parent cisco_aci_{{item['p_name']}} Identifier
+  fvtenant                    => 'test_tenant1', #Parent cisco_aci_fvtenant Identifier
   arp_flood                   => 'yes',
   descr                       => 'My bridge domain in tenant test_tenant1',
   ep_clear                    => 'no',

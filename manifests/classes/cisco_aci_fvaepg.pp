@@ -48,9 +48,11 @@ class cisco_aci::classes::cisco_aci_fvaepg (
     $override_descr = $fvaepg_descr,
 ) {
     cisco_aci_fvaepg {'deploy_fvaepg':
-          ensure             => 'present',
+          ensure             => $override_ensure,
           name               => $fvaepg_name,
-          descr              => $fvaepg_descr,
+          fvtenant           => $fvaepg_fvtenant,
+          fvap               => $fvaepg_fvap,
+          descr              => $override_descr,
           fwd_ctrl           => $fvaepg_fwd_ctrl,
           is_attr_based_e_pg => $fvaepg_is_attr_based_e_pg,
           match_t            => $fvaepg_match_t,
@@ -58,6 +60,6 @@ class cisco_aci::classes::cisco_aci_fvaepg (
           pc_enf_pref        => $fvaepg_pc_enf_pref,
           pref_gr_memb       => $fvaepg_pref_gr_memb,
           prio               => $fvaepg_prio,
-  }
+      }
 
 }

@@ -4,8 +4,8 @@
 cisco_aci_vzsubj { 'test_subject1':
   ensure        => 'present',
   name          => 'test_subject1', #Instance Identifier
-  fvtenant      => 'test_tenant1', #Parent cisco_aci_{{item['p_name']}} Identifier
-  vzbrcp        => 'test_contract1', #Parent cisco_aci_{{item['p_name']}} Identifier
+  fvtenant      => 'test_tenant1', #Parent cisco_aci_fvtenant Identifier
+  vzbrcp        => 'test_contract1', #Parent cisco_aci_vzbrcp Identifier
   cons_match_t  => 'AtleastOne',
   descr         => 'My subject test_subject1 for contract test_contract1 in tenant test_tenant1',
   name_alias    => 'test_subject_1',

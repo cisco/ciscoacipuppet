@@ -4,7 +4,7 @@
 cisco_aci_fvctx { 'test_vrf1':
   ensure             => 'present',
   name               => 'test_vrf1', #Instance Identifier
-  fvtenant           => 'test_tenant1', #Parent cisco_aci_{{item['p_name']}} Identifier
+  fvtenant           => 'test_tenant1', #Parent cisco_aci_fvtenant Identifier
   bd_enforced_enable => 'no',
   descr              => 'My VRF context in tenant test_tenant1',
   knw_mcast_act      => 'permit',

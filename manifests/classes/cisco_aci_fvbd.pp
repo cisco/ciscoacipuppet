@@ -60,10 +60,11 @@ class cisco_aci::classes::cisco_aci_fvbd (
     $override_descr = $fvbd_descr,
 ) {
     cisco_aci_fvbd {'deploy_fvbd':
-          ensure                      => 'present',
+          ensure                      => $override_ensure,
           name                        => $fvbd_name,
+          fvtenant                    => $fvbd_fvtenant,
           arp_flood                   => $fvbd_arp_flood,
-          descr                       => $fvbd_descr,
+          descr                       => $override_descr,
           ep_clear                    => $fvbd_ep_clear,
           ep_move_detect_mode         => $fvbd_ep_move_detect_mode,
           intersite_bum_traffic_allow => $fvbd_intersite_bum_traffic_allow,
@@ -83,6 +84,6 @@ class cisco_aci::classes::cisco_aci_fvbd (
           unk_mac_ucast_act           => $fvbd_unk_mac_ucast_act,
           unk_mcast_act               => $fvbd_unk_mcast_act,
           vmac                        => $fvbd_vmac,
-  }
+      }
 
 }

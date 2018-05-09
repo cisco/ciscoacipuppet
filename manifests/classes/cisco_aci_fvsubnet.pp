@@ -47,15 +47,17 @@ class cisco_aci::classes::cisco_aci_fvsubnet (
     $override_descr = $fvsubnet_descr,
 ) {
     cisco_aci_fvsubnet {'deploy_fvsubnet':
-          ensure     => 'present',
+          ensure     => $override_ensure,
           ip         => $fvsubnet_ip,
+          fvtenant   => $fvsubnet_fvtenant,
+          fvbd       => $fvsubnet_fvbd,
           ctrl       => $fvsubnet_ctrl,
-          descr      => $fvsubnet_descr,
+          descr      => $override_descr,
           name       => $fvsubnet_name,
           name_alias => $fvsubnet_name_alias,
           preferred  => $fvsubnet_preferred,
           scope      => $fvsubnet_scope,
           virtual    => $fvsubnet_virtual,
-  }
+      }
 
 }
