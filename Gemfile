@@ -33,7 +33,6 @@ end
 puppetversion = ENV.key?('PUPPET_VERSION') ? "#{ENV['PUPPET_VERSION']}" : ['>= 3.3']
 gem 'puppet', puppetversion
 
-# facterversion = ENV.key?('FACTER_GEM_VERSION') ? "#{ENV['FACTER_GEM__VERSION']}" : ['>= 1.7.0']
 gem 'facter', '>= 1.7.0'
 
 group :development, :acceptance_tests do
