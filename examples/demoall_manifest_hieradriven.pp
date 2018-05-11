@@ -31,9 +31,9 @@
 
 node 'proxy-agent.example.com' {
   puppet_device {'apic.example.com':
-    type             => 'apic',  # Specifies the type of the device in device.conf.
-    url              => 'https://username:password@apic.example.com', # Specifies the URL of the device in device.conf.
-    run_interval     =>  30,     # Execute `puppet device --target apic.example.com` every 30 minutes.
+    type         => 'apic',  # Specifies the type of the device in device.conf.
+    url          => 'https://username:password@apic.example.com', # Specifies the URL of the device in device.conf.
+    run_interval =>  30,     # Execute `puppet device --target apic.example.com` every 30 minutes.
   }
 }
 
@@ -49,11 +49,11 @@ node 'apic.example.com' {
 #For testing purpose, one can also override the description (descr) property
 #associated with resources.
 
-  $override_ensure = "present"
+  $override_ensure = 'present'
   $override_descr = undef
   class {'cisco_aci::classes::cisco_aci_all':
-     override_ensure => $override_ensure,
-     override_descr  => $override_descr
+    override_ensure => $override_ensure,
+    override_descr  => $override_descr
   }
 
 }

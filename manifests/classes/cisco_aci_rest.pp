@@ -39,9 +39,9 @@ class cisco_aci::classes::cisco_aci_rest (
     $override_http_request_body = $aci_rest_http_request_body,
 ) {
     cisco_aci_rest {'deploy_aci_rest':
-          http_request_type  => $override_http_request_type,
-          resource_uri       => $override_resource_uri,
-          http_request_body  => $override_http_request_body,
+          http_request_type => $override_http_request_type,
+          resource_uri      => $override_resource_uri,
+          http_request_body => $override_http_request_body,
     }
 
 }

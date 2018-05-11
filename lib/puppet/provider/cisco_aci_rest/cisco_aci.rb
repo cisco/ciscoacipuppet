@@ -6,7 +6,7 @@
 # Puppet resource provider that allows the administrator to send
 # HTTP POST/DELETE operations with specified raw JSON body formed
 # according to the specification in the ACI REST Pramming Guide
-# [https://www.cisco.com/c/en/us/td/docs/switches/datacenter/aci/apic/sw/2-x/rest_cfg/2_1_x/b_Cisco_APIC_REST_API_Configuration_Guide/b_Cisco_APIC_REST_API_Configuration_Guide_chapter_01.html]
+# [http://cs.co/9002DdJJy]
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -39,26 +39,26 @@ Puppet::Type.type(:cisco_aci_rest).provide(:cisco_aci) do
   # Class Constants
   # ---------------------------------------------------------------
 
-  #Get the namevars for this Puppet Type
+  # Get the namevars for this Puppet Type
   def self.my_namevars
     [
-        :name,
+      :name
     ]
   end
 
-  #Get all the namevars for this Puppet Type (includes parents)
+  # Get all the namevars for this Puppet Type (includes parents)
   def self.allnamevars
     [
-        :name,
+      :name
     ]
   end
 
-  #Get all the properties for this Puppet Type
+  # Get all the properties for this Puppet Type
   def self.allproperties
     [
-        :http_request_type,
-        :resource_uri,
-        :http_request_body,
+      :http_request_type,
+      :resource_uri,
+      :http_request_body,
     ]
   end
 
@@ -84,35 +84,29 @@ Puppet::Type.type(:cisco_aci_rest).provide(:cisco_aci) do
   end
 
   def http_request_type=(type)
-    '''
-      Sets the property_flush with the `http_request_type` from the manifest
-    '''
+    # Sets the property_flush with the `http_request_type` from the manifest
     @property_flush[:http_request_type] = type
   end
-  
+
   def resource_uri=(uri)
-    '''
-      Sets the property_flush with the `resource_uri` from the manifest
-    '''
+    # Sets the property_flush with the `resource_uri` from the manifest
     @property_flush[:resource_uri] = uri
   end
 
   def http_request_body=(content)
-    '''
-      Sets the property_flush with the `http_request_body` from the manifest
-    '''
+    # Sets the property_flush with the `http_request_body` from the manifest
     @property_flush[:http_request_body] = content
   end
 
   def flush
-    fail ArgumentError,"'http_request_type' is a required property" if @property_flush[:http_request_type].nil?
-    url = @property_flush[:resource_uri] + "?rsp-subtree=modified"
+    fail ArgumentError, "'http_request_type' is a required property" if @property_flush[:http_request_type].nil?
+    url = @property_flush[:resource_uri] + '?rsp-subtree=modified'
     content = @property_flush[:http_request_body]
     if [:post, :default].include? @property_flush[:http_request_type]
       resp = Puppet::Util::NetworkDevice.current.post(url, content)
-      puts "Objects changed - #{resp["totalCount"]}"
+      puts "Objects changed - #{resp['totalCount']}"
     elsif @property_flush[:http_request_type] == :delete
-      resp = Puppet::Util::NetworkDevice.current.delete(url)
-    end 
+      Puppet::Util::NetworkDevice.current.delete(url)
+    end
   end
 end

@@ -1,5 +1,5 @@
 #
-# April 2018
+# May 2018
 #
 # Copyright (c) 2017-2018  Cisco and/or its affiliates.
 #
@@ -29,12 +29,12 @@ rescue LoadError # seen on master, not on agent
 end
 
 #====================Common Terms & Notes=========================
-#MO     = ACI Managed Object
-#Class  = Each MO represented by a Class Name (ex: fvTenant)
-#Prefix = Each MO has a unique Prefix (ex: 'tn' for fvTenant)
-#RN     = Relative Name of a MO in prefix-instance form (ex: tn-tenant1)
-#Parent = Parent MO for the ACI Managed Object
-#DN     = Distinguished Name that uniquely identifies a MO instance in ACI
+# MO     = ACI Managed Object
+# Class  = Each MO represented by a Class Name (ex: fvTenant)
+# Prefix = Each MO has a unique Prefix (ex: 'tn' for fvTenant)
+# RN     = Relative Name of a MO in prefix-instance form (ex: tn-tenant1)
+# Parent = Parent MO for the ACI Managed Object
+# DN     = Distinguished Name that uniquely identifies a MO instance in ACI
 #         (ex: uni/tn-tenant1/BF-mybd1)
 #====================Provider Utilities===========================
 
@@ -48,73 +48,73 @@ Puppet::Type.type(:cisco_aci_fvaepg).provide(:cisco_aci) do
   # Class Constants
   # ---------------------------------------------------------------
 
-  #Get the MO class name associated with the Puppet Type
+  # Get the MO class name associated with the Puppet Type
   def self.mo_class_name
-    "fvAEPg"
+    'fvAEPg'
   end
 
-  #Get the MO prefix associated with the Puppet Type
+  # Get the MO prefix associated with the Puppet Type
   def self.mo_dn_prefix
-    "epg"
+    'epg'
   end
 
-  #Get the URL to query the MO class associated with the Puppet Type
+  # Get the URL to query the MO class associated with the Puppet Type
   def self.mo_class_query_url
-    "/api/class/fvAEPg.json?query-target=self"
+    '/api/class/fvAEPg.json?query-target=self'
   end
 
-  #Get a list of parent MOs (and their prefix) for this Puppet Type
+  # Get a list of parent MOs (and their prefix) for this Puppet Type
   def self.parent_namevars
     {
-        :fvtenant => 'tn',
-        :fvap => 'ap',
+      fvtenant: 'tn',
+      fvap:     'ap',
     }
   end
 
-  #Get the namevars for this Puppet Type
+  # Get the namevars for this Puppet Type
   def self.my_namevars
     [
-        :name,
+      :name
     ]
   end
 
-  #Get all the namevars for this Puppet Type (includes parents)
+  # Get all the namevars for this Puppet Type (includes parents)
   def self.allnamevars
     [
-        :name,
-        :fvtenant,
-        :fvap,
+      :name,
+      :fvtenant,
+      :fvap,
     ]
   end
 
-  #Get all the properties for this Puppet Type
+  # Get all the properties for this Puppet Type
   def self.allproperties
     [
-        :descr,
-        :fwd_ctrl,
-        :is_attr_based_e_pg,
-        :match_t,
-        :name_alias,
-        :pc_enf_pref,
-        :pref_gr_memb,
-        :prio,
+      :descr,
+      :fwd_ctrl,
+      :is_attr_based_e_pg,
+      :match_t,
+      :name_alias,
+      :pc_enf_pref,
+      :pref_gr_memb,
+      :prio,
     ]
   end
 
-  #Get the hash that maps Puppet Type attributes to MO attributes
+  # Get the hash that maps Puppet Type attributes to MO attributes
   def self.pt_attr_2_mo_attr
     {
-        :descr => 'descr',
-        :dn => 'dn',
-        :fwd_ctrl => 'fwdCtrl',
-        :is_attr_based_e_pg => 'isAttrBasedEPg',
-        :match_t => 'matchT',
-        :name => 'name',
-        :name_alias => 'nameAlias',
-        :pc_enf_pref => 'pcEnfPref',
-        :pref_gr_memb => 'prefGrMemb',
-        :prio => 'prio',
-        }
+      descr:              'descr',
+      dn:                 'dn',
+      fwd_ctrl:           'fwdCtrl',
+      is_attr_based_e_pg: 'isAttrBasedEPg',
+      match_t:            'matchT',
+      name:               'name',
+      name_alias:         'nameAlias',
+      pc_enf_pref:        'pcEnfPref',
+      pref_gr_memb:       'prefGrMemb',
+      prio:               'prio',
+    }
   end
 
   # ---------------------------------------------------------------
@@ -122,7 +122,7 @@ Puppet::Type.type(:cisco_aci_fvaepg).provide(:cisco_aci) do
   # ---------------------------------------------------------------
 
   def self.instances
-    #Discover instances by querying ACI
+    # Discover instances by querying ACI
     PuppetX::Cisco::ACIUtils.instances(self)
   end # self.instances
 
@@ -150,7 +150,7 @@ Puppet::Type.type(:cisco_aci_fvaepg).provide(:cisco_aci) do
   def initialize(value={})
     super(value)
     @property_flush = {}
-    #Initialize property_flush with keys from property_hash
+    # Initialize property_flush with keys from property_hash
     PuppetX::Cisco::ACIUtils.puppet_hash_init(self)
   end
 
@@ -159,7 +159,7 @@ Puppet::Type.type(:cisco_aci_fvaepg).provide(:cisco_aci) do
   end
 
   def create
-    #Update property_flush with desired value from resource
+    # Update property_flush with desired value from resource
     PuppetX::Cisco::ACIUtils.create(self)
     @property_flush[:ensure] = :present
   end
@@ -169,23 +169,21 @@ Puppet::Type.type(:cisco_aci_fvaepg).provide(:cisco_aci) do
   end
 
   def flush
-    #Flush the attributes in property_flush to ACI
+    # Flush the attributes in property_flush to ACI
     apic_gui_url = PuppetX::Cisco::ACIUtils.flush(self)
-    notice("APIC GUI URI for provisioned resource " + apic_gui_url) \
-      unless (apic_gui_url.nil? || apic_gui_url.empty?)
+    notice('APIC GUI URI for provisioned resource ' + apic_gui_url) \
+      unless apic_gui_url.nil? || apic_gui_url.empty?
   end
 
-  #Generate setters that cache proposed changes in the property_flush
+  # Generate setters that cache proposed changes in the property_flush
   def self.mk_resource_methods_custom_setters
     all_puppet_attrs = allnamevars + allproperties
     all_puppet_attrs.each do |attr|
-      define_method(attr.to_s + "=") do |val|
+      define_method(attr.to_s + '=') do |val|
         @property_flush[attr] = val
       end
     end
   end
 
   mk_resource_methods_custom_setters
-
-
 end

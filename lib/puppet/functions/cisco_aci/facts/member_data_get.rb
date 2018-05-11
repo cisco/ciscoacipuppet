@@ -17,7 +17,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 Puppet::Functions.create_function(:'cisco_aci::facts::member_data_get') do
-
   # Get specific aci fabric member data using a lookup key
   #
   # @param member_id_key_hash Hash containing member id and member data key
@@ -37,31 +36,30 @@ Puppet::Functions.create_function(:'cisco_aci::facts::member_data_get') do
   end
 
   def data_get(member_id_key_hash)
-    if member_id_key_hash.empty? or member_id_key_hash.size > 1
-      fn = "cisco_aci::facts::member_data_get"
+    if member_id_key_hash.empty? || member_id_key_hash.size > 1
+      fn = 'cisco_aci::facts::member_data_get'
       arg = "#{fn}({'<aci_fabric_member_id>' => '<data_key>'})"
 
-      msg = %{
+      msg = %(
       Invalid argument format specified for function '#{fn}'!
       Argument should be type [Hash] with one key/value pair"
 
       Example:
           #{arg}
-      }
+      )
       call_function('fail', msg)
     end
     member_id = member_id_key_hash.keys[0].to_s
     data_key = member_id_key_hash[member_id].to_s
     scope = closure_scope
     scope['facts']['aci_fabric_members'].each do |member|
-      if member.keys[0].to_s == member_id
-        if data_key == 'all'
-          return member[member_id]
-        else
-          return member[member_id][data_key]
-        end
+      next unless member.keys[0].to_s == member_id
+      if data_key == 'all'
+        return member[member_id]
+      else
+        return member[member_id][data_key]
       end
     end
-    return "DATA NOT FOUND FOR ACI FABRIC MEMBER #{member_id}"
+    "DATA NOT FOUND FOR ACI FABRIC MEMBER #{member_id}"
   end
 end

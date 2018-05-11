@@ -21,7 +21,7 @@
 # To easily display the cisco_aci fabric member facts simply add the following
 # include line to the /etc/puppetlabs/code/environments/production/manifests/site.pp
 #
-# 
+#
 # node 'cnijim-61.cisco.com' {
 #   include cisco_aci::facts
 # }
@@ -53,7 +53,7 @@ class cisco_aci::facts {
   $member1 = $members[0]
   notice("ACI Fabric Member Data for Member: ${member1}")
   $member_data = cisco_aci::facts::fabric_member_get({"${member1}" => 'all'})
-  $json_name = "@member_data"
+  $json_name = '@member_data'
 
   $content = inline_template("
   <%- require 'json' -%>

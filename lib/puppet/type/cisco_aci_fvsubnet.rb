@@ -1,5 +1,5 @@
 #
-# April 2018
+# May 2018
 #
 # Copyright (c) 2017-2018 Cisco and/or its affiliates.
 #
@@ -23,7 +23,7 @@ Puppet::Type.newtype(:cisco_aci_fvsubnet) do
   # ---------------------------------------------------------------
   # @doc entry to describe the resource and usage
   # ---------------------------------------------------------------
-  @doc = "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html"
+  @doc = 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html'
 
   ensurable
   apply_to_device
@@ -46,54 +46,50 @@ Puppet::Type.newtype(:cisco_aci_fvsubnet) do
   # ---------------------------------------------------------------
 
   newparam(:ip, namevar: true) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#ip"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#ip'
   end
-
 
   # ---------------------------------------------------------------
   # Namevars (Parent Instance Identifiers)
   # ---------------------------------------------------------------
 
   newparam(:fvtenant, namevar: true) do
-    desc "Parent cisco_aci_fvtenant instance Identifier"
+    desc 'Parent cisco_aci_fvtenant instance Identifier'
   end
 
   newparam(:fvbd, namevar: true) do
-    desc "Parent cisco_aci_fvbd instance Identifier"
+    desc 'Parent cisco_aci_fvbd instance Identifier'
   end
-
 
   # ---------------------------------------------------------------
   # Properties
   # ---------------------------------------------------------------
 
   newproperty(:ctrl) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#ctrl"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#ctrl'
   end
 
   newproperty(:descr) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#descr"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#descr'
   end
 
   newproperty(:name) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#name"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#name'
   end
 
   newproperty(:name_alias) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#nameAlias"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#nameAlias'
   end
 
   newproperty(:preferred) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#preferred"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#preferred'
   end
 
   newproperty(:scope) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#scope"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#scope'
   end
 
   newproperty(:virtual) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#virtual"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#virtual'
   end
-
-
 end

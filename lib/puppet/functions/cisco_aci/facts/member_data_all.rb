@@ -17,7 +17,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 Puppet::Functions.create_function(:'cisco_aci::facts::member_data_all') do
-
   # Get all aci fabric member data
   # @return [Array] of [Hash] structures for each aci fabric member.
   #

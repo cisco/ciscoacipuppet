@@ -1,5 +1,5 @@
 #
-# April 2018
+# May 2018
 #
 # Copyright (c) 2017-2018 Cisco and/or its affiliates.
 #
@@ -43,54 +43,54 @@ class cisco_aci::classes::cisco_aci_all (
 
   class {'cisco_aci::classes::cisco_aci_fvtenant':
     override_ensure => $override_ensure,
-    override_descr => $override_descr
+    override_descr  => $override_descr
   }
   class {'cisco_aci::classes::cisco_aci_fvap':
     override_ensure => $override_ensure,
-    override_descr => $override_descr
+    override_descr  => $override_descr
   }
   class {'cisco_aci::classes::cisco_aci_fvbd':
     override_ensure => $override_ensure,
-    override_descr => $override_descr
+    override_descr  => $override_descr
   }
   class {'cisco_aci::classes::cisco_aci_fvctx':
     override_ensure => $override_ensure,
-    override_descr => $override_descr
+    override_descr  => $override_descr
   }
   class {'cisco_aci::classes::cisco_aci_vzbrcp':
     override_ensure => $override_ensure,
-    override_descr => $override_descr
+    override_descr  => $override_descr
   }
   class {'cisco_aci::classes::cisco_aci_vzfilter':
     override_ensure => $override_ensure,
-    override_descr => $override_descr
+    override_descr  => $override_descr
   }
   class {'cisco_aci::classes::cisco_aci_fvaepg':
     override_ensure => $override_ensure,
-    override_descr => $override_descr
+    override_descr  => $override_descr
   }
   class {'cisco_aci::classes::cisco_aci_fvsubnet':
     override_ensure => $override_ensure,
-    override_descr => $override_descr
+    override_descr  => $override_descr
   }
   class {'cisco_aci::classes::cisco_aci_vzentry':
     override_ensure => $override_ensure,
-    override_descr => $override_descr
+    override_descr  => $override_descr
   }
   class {'cisco_aci::classes::cisco_aci_vzsubj':
     override_ensure => $override_ensure,
-    override_descr => $override_descr
+    override_descr  => $override_descr
   }
 
-  Class['cisco_aci::classes::cisco_aci_fvtenant'] ->
-  Class['cisco_aci::classes::cisco_aci_fvap'] ->
-  Class['cisco_aci::classes::cisco_aci_fvbd'] ->
-  Class['cisco_aci::classes::cisco_aci_fvctx'] ->
-  Class['cisco_aci::classes::cisco_aci_vzbrcp'] ->
-  Class['cisco_aci::classes::cisco_aci_vzfilter'] ->
-  Class['cisco_aci::classes::cisco_aci_fvaepg'] ->
-  Class['cisco_aci::classes::cisco_aci_fvsubnet'] ->
-  Class['cisco_aci::classes::cisco_aci_vzentry'] ->
-  Class['cisco_aci::classes::cisco_aci_vzsubj'] 
+  Class['cisco_aci::classes::cisco_aci_fvtenant']
+  -> Class['cisco_aci::classes::cisco_aci_fvap']
+  -> Class['cisco_aci::classes::cisco_aci_fvbd']
+  -> Class['cisco_aci::classes::cisco_aci_fvctx']
+  -> Class['cisco_aci::classes::cisco_aci_vzbrcp']
+  -> Class['cisco_aci::classes::cisco_aci_vzfilter']
+  -> Class['cisco_aci::classes::cisco_aci_fvaepg']
+  -> Class['cisco_aci::classes::cisco_aci_fvsubnet']
+  -> Class['cisco_aci::classes::cisco_aci_vzentry']
+  -> Class['cisco_aci::classes::cisco_aci_vzsubj']
 
 }

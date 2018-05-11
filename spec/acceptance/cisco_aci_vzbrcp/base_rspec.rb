@@ -1,5 +1,5 @@
 #
-# April 2018
+# May 2018
 #
 # Copyright (c) 2017-2018  Cisco and/or its affiliates.
 #
@@ -19,19 +19,19 @@
 
 require_relative '../../spec_helper_acceptance'
 
-describe "vzbrcp" do
-  context "Base acceptance test" do
-    basedata_fname = File.dirname(__FILE__) + "/vzbrcp_basedata.pp"
+describe 'vzbrcp' do
+  context 'Base acceptance test' do
+    basedata_fname = File.dirname(__FILE__) + '/vzbrcp_basedata.pp'
     basedata = File.read(basedata_fname)
-    it "Create (ensure = present)" do
+    it 'Create (ensure = present)' do
       manifest = "$override_ensure = present\n$override_descr = undef\n" + basedata
       apply_manifest(manifest)
     end
-    it "Modify description (ensure = present)" do
+    it 'Modify description (ensure = present)' do
       manifest = "$override_ensure = present\n$override_descr = 'Rspec Modified'\n" + basedata
       apply_manifest(manifest)
     end
-    it "Delete (ensure = absent)" do
+    it 'Delete (ensure = absent)' do
       manifest = "$override_ensure = absent\n$override_descr = undef\n" + basedata
       apply_manifest(manifest)
     end
