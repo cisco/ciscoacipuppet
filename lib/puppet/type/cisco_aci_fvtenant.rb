@@ -1,5 +1,5 @@
 #
-# April 2018
+# May 2018
 #
 # Copyright (c) 2017-2018 Cisco and/or its affiliates.
 #
@@ -23,7 +23,7 @@ Puppet::Type.newtype(:cisco_aci_fvtenant) do
   # ---------------------------------------------------------------
   # @doc entry to describe the resource and usage
   # ---------------------------------------------------------------
-  @doc = "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html"
+  @doc = 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html'
 
   ensurable
   apply_to_device
@@ -46,34 +46,30 @@ Puppet::Type.newtype(:cisco_aci_fvtenant) do
   # ---------------------------------------------------------------
 
   newparam(:name, namevar: true) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html#name"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html#name'
   end
-
 
   # ---------------------------------------------------------------
   # Namevars (Parent Instance Identifiers)
   # ---------------------------------------------------------------
-
 
   # ---------------------------------------------------------------
   # Properties
   # ---------------------------------------------------------------
 
   newproperty(:descr) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html#descr"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html#descr'
   end
 
   newproperty(:name_alias) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html#nameAlias"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html#nameAlias'
   end
 
   newproperty(:owner_key) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html#ownerKey"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html#ownerKey'
   end
 
   newproperty(:owner_tag) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html#ownerTag"
+    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html#ownerTag'
   end
-
-
 end

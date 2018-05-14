@@ -1,5 +1,5 @@
 #
-# April 2018
+# May 2018
 #
 # Copyright (c) 2017-2018 Cisco and/or its affiliates.
 #
@@ -55,25 +55,25 @@ class cisco_aci::classes::cisco_aci_vzentry (
     $override_descr = $vzentry_descr,
 ) {
     cisco_aci_vzentry {'deploy_vzentry':
-          ensure => $override_ensure,
-          name => $vzentry_name,
-          fvtenant => $vzentry_fvtenant,
-          vzfilter => $vzentry_vzfilter,
+          ensure        => $override_ensure,
+          name          => $vzentry_name,
+          fvtenant      => $vzentry_fvtenant,
+          vzfilter      => $vzentry_vzfilter,
           apply_to_frag => $vzentry_apply_to_frag,
-          arp_opc => $vzentry_arp_opc,
-          d_from_port => $vzentry_d_from_port,
-          d_to_port => $vzentry_d_to_port,
-          descr => $override_descr,
-          ether_t => $vzentry_ether_t,
-          icmpv4_t => $vzentry_icmpv4_t,
-          icmpv6_t => $vzentry_icmpv6_t,
-          match_dscp => $vzentry_match_dscp,
-          name_alias => $vzentry_name_alias,
-          prot => $vzentry_prot,
-          s_from_port => $vzentry_s_from_port,
-          s_to_port => $vzentry_s_to_port,
-          stateful => $vzentry_stateful,
-          tcp_rules => $vzentry_tcp_rules,
+          arp_opc       => $vzentry_arp_opc,
+          d_from_port   => $vzentry_d_from_port,
+          d_to_port     => $vzentry_d_to_port,
+          descr         => $override_descr,
+          ether_t       => $vzentry_ether_t,
+          icmpv4_t      => $vzentry_icmpv4_t,
+          icmpv6_t      => $vzentry_icmpv6_t,
+          match_dscp    => $vzentry_match_dscp,
+          name_alias    => $vzentry_name_alias,
+          prot          => $vzentry_prot,
+          s_from_port   => $vzentry_s_from_port,
+          s_to_port     => $vzentry_s_to_port,
+          stateful      => $vzentry_stateful,
+          tcp_rules     => $vzentry_tcp_rules,
       }
 
 }

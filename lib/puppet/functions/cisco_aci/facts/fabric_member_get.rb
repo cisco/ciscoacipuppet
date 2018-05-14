@@ -17,7 +17,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 Puppet::Functions.create_function(:'cisco_aci::facts::fabric_member_get') do
-
   # Acts on various request types to return fabric member fact data.
   #
   # @param value count: Request number of aci fabric members.
