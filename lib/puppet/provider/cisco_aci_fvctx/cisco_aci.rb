@@ -67,14 +67,14 @@ Puppet::Type.type(:cisco_aci_fvctx).provide(:cisco_aci) do
   # Get a list of parent MOs (and their prefix) for this Puppet Type
   def self.parent_namevars
     {
-      fvtenant: 'tn',
+      fvtenant: 'tn'
     }
   end
 
   # Get the namevars for this Puppet Type
   def self.my_namevars
     [
-      :name,
+      :name
     ]
   end
 

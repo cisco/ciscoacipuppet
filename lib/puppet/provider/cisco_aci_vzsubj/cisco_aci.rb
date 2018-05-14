@@ -75,7 +75,7 @@ Puppet::Type.type(:cisco_aci_vzsubj).provide(:cisco_aci) do
   # Get the namevars for this Puppet Type
   def self.my_namevars
     [
-      :name,
+      :name
     ]
   end
 

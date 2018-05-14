@@ -37,7 +37,7 @@ Puppet::Type.newtype(:cisco_aci_fvbd) do
     patterns << [
       /^(\S+)$/,
       [
-        [:name, identity],
+        [:name, identity]
       ],
     ]
     patterns

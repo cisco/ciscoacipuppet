@@ -39,7 +39,7 @@ Puppet::Type.newtype(:cisco_aci_vzbrcp) do
     patterns << [
       /^(\S+)$/,
       [
-        [:name, identity],
+        [:name, identity]
       ],
     ]
     patterns

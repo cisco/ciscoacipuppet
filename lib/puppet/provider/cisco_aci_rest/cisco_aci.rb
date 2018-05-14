@@ -42,14 +42,14 @@ Puppet::Type.type(:cisco_aci_rest).provide(:cisco_aci) do
   # Get the namevars for this Puppet Type
   def self.my_namevars
     [
-      :name,
+      :name
     ]
   end
 
   # Get all the namevars for this Puppet Type (includes parents)
   def self.allnamevars
     [
-      :name,
+      :name
     ]
   end
 

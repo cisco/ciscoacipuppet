@@ -75,7 +75,7 @@ Puppet::Type.type(:cisco_aci_fvsubnet).provide(:cisco_aci) do
   # Get the namevars for this Puppet Type
   def self.my_namevars
     [
-      :ip,
+      :ip
     ]
   end
 
