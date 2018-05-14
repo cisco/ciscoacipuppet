@@ -5,7 +5,8 @@
 #
 # Puppet resource type for vzentry
 # For documentation for the Managed Object corresponding to this Puppet Type
-# please refer to the following URL: https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html
+# please refer to the following URL
+# https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,7 +24,7 @@ Puppet::Type.newtype(:cisco_aci_vzentry) do
   # ---------------------------------------------------------------
   # @doc entry to describe the resource and usage
   # ---------------------------------------------------------------
-  @doc = 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html'
+  @doc = 'A filter entry is a combination of network traffic classification properties.'
 
   ensurable
   apply_to_device
@@ -35,7 +36,7 @@ Puppet::Type.newtype(:cisco_aci_vzentry) do
     patterns << [
       /^(\S+)$/,
       [
-        [:name, identity]
+        [:name, identity],
       ],
     ]
     patterns
@@ -46,7 +47,8 @@ Puppet::Type.newtype(:cisco_aci_vzentry) do
   # ---------------------------------------------------------------
 
   newparam(:name, namevar: true) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#name'
+    desc 'The name of a filter entry. This name can be up to 64 alphanumeric characters.
+    Note that you cannot change this name after the object has been saved.'
   end
 
   # ---------------------------------------------------------------
@@ -66,62 +68,62 @@ Puppet::Type.newtype(:cisco_aci_vzentry) do
   # ---------------------------------------------------------------
 
   newproperty(:apply_to_frag) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#applyToFrag'
+    desc ''
   end
 
   newproperty(:arp_opc) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#arpOpc'
+    desc 'ARP opcodes.'
   end
 
   newproperty(:d_from_port) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#dFromPort'
+    desc 'Destination From Port.'
   end
 
   newproperty(:d_to_port) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#dToPort'
+    desc 'Destination To Port.'
   end
 
   newproperty(:descr) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#descr'
+    desc 'Specifies the description of a policy component.'
   end
 
   newproperty(:ether_t) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#etherT'
+    desc 'Ether type.'
   end
 
   newproperty(:icmpv4_t) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#icmpv4T'
+    desc ''
   end
 
   newproperty(:icmpv6_t) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#icmpv6T'
+    desc ''
   end
 
   newproperty(:match_dscp) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#matchDscp'
+    desc ''
   end
 
   newproperty(:name_alias) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#nameAlias'
+    desc ''
   end
 
   newproperty(:prot) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#prot'
+    desc 'L3 Ip Protocol.'
   end
 
   newproperty(:s_from_port) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#sFromPort'
+    desc 'Source From Port.'
   end
 
   newproperty(:s_to_port) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#sToPort'
+    desc 'Source To Port.'
   end
 
   newproperty(:stateful) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#stateful'
+    desc ''
   end
 
   newproperty(:tcp_rules) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#tcpRules'
+    desc 'TCP Session Rules.'
   end
 end

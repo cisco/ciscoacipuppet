@@ -1,4 +1,4 @@
-# cisco_aci Puppet Module
+# cisco_aci Module
 
 #### Table of Contents
 
@@ -29,22 +29,23 @@
     * [Using Examples](#using-examples)
     	* [Resource Based Manifest](#resource-based-manifest)
       * [Hiera Driven Class Based Manifest](#hiera-driven-class-based-manifest)
-1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-   * [How Puppet Types are mapped to ACI Managed Objects](#how-puppet-types-are-mapped-to-aci-managed-objects)
-   * [Puppet Provider to APIC Inter Working](#puppet-provider-to-apic-inter-working)
-   * [Supported Puppet Resources](#supported-puppet-resources)
 1. [Troubleshooting](#troubleshooting)
-	* [Issues during setup](#issues_during_setup)
-		* [cisco_aci Module Installation](#cisco_aci_module_installation)
-	* [Issues during execution of puppet agent](#issues_during_execution_of_puppet_agent)
-	* [Issues during execution of puppet device](#issues_during_execution_of_puppet_device)
-		* [Enabling Debugging](#enabling_debugging)
-		* [Manual Execution of puppet device](#manual_execution_of_puppet_device)
-		* [Examine Debugging Messages](#examine_debugging_messages)
-		* [Examine Exceptions from APIC](#examine_exceptions_from_apic)
-	* [Issues during the usage of the cisco_aci module](#issues_during_the_usage_of_the_cisco_aci_module)
-	* [APIC Issues](#apic_issues)
+	* [Issues during setup](#0-issues-during-setup)
+		* [cisco_aci Module Installation](#cisco_aci-module-installation)
+	* [Issues during execution of puppet agent](#1-issues-during-execution-of-puppet-agent)
+	* [Issues during execution of puppet device](#2-issues-during-execution-of-puppet-device)
+		* [Failures during compilation of Puppet Manifest](#failures-during-compilation-of-puppet-manifest)
+		* [Failures during the Fact from APIC](#failures-during-the-fact-from-apic)
+	* [Issues during the usage of the cisco_aci module](#3-issues-during-the-usage-of-the-cisco_aci-module)
+		* [Enabling Debugging](#enabling-debugging)
+		* [Manual Execution of puppet device](#manual-execution-of-puppet-device)
+		* [Examine Debugging Messages](#examine-debugging-messages)
+		* [Examine Exceptions from APIC](#examine-exceptions-from-apic)
+	* [APIC Issues](#4-apic-issues)
 1. [Limitations - OS compatibility, etc.](#limitations)
+1. [Reference](#reference)
+   * [Cisco ACI Resource Type Catalog](#cisco-aci-resource-type-catalog)
+
 
 ## Overview
 
@@ -545,22 +546,6 @@ To make use of this sample manifest, please follow these steps.
    # Note, your location might differ but this is provided as a working example.
    ````
 
-## Reference
-
-### Supported Puppet Resources
-| Puppet Type         | ACI Managed Object   |  Puppet Namevars (keys)   |
-|---------------------|----------------------|---------------------------
-|[cisco_aci_fvtenant](lib/puppet/type/cisco_aci_fvtenant.rb)|   A tenant is a logical container for application policies that enable an administrator to exercise domain-based access control. <br /> **Documentation:** [`fvTenant`](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html) <br /> **APIC GUI:** https://\<apic.example.com\>/#bTenants:\<tenant name\>\| uni/tn-\<tenant name\> | **Instance Identifiers**  <br /> <ul><li>cisco_aci_fvtenant.name</li></ul>   |
-|[cisco_aci_fvap](lib/puppet/type/cisco_aci_fvap.rb)|    An application profile defines the policies, services and relationships between endpoint groups. <br /> **Documentation:** [`fvAp`](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html) <br />  **APIC GUI:** https://\<apic.example.com\>/#bTenants:\<tenant name\>\| uni/tn-\<tenant name\>/ap-<app profile name\>  | **Instance Identifiers**  <br /> <ul><li>cisco_aci_fvap.name</li></ul> <br /> **Parent Identifiers** <br /> <ul><li>cisco_aci_fvap.fvtenant</li></ul>|
-|[cisco_aci_fvbd](lib/puppet/type/cisco_aci_fvbd.rb)|  A bridge domain (fvBD) represents a Layer 2 forwarding construct within the fabric.<br />  **Documentation:** [`fvBD`](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html)  <br /> **APIC GUI:** https://\<apic.example.com\>/#bTenants:\<tenant name\>\| uni/tn-\<tenant name\>/BD-<bridge domain name\>    |**Instance Identifiers**  <br /> <ul><li>cisco_aci_fvbd.name</li></ul> <br /> **Parent Identifiers** <br /> <ul><li>cisco_aci_fvbd.fvtenant</li></ul>|
-|[cisco_aci_vzbrcp](lib/puppet/type/cisco_aci_vzbrcp.rb)|  A contract in the policy model. <br /> **Documentation:** [`vzBrCP`](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html) <br />  <br /> **APIC GUI:** https://\<apic.example.com\>/#bTenants:\<tenant name\>\| uni/tn-\<tenant name\>/brc-<contract name\>    |**Instance Identifiers**  <br /> <ul><li>cisco_aci_vzbrcp.name</li></ul><br /> **Parent Identifiers** <br /> <ul><li>cisco_aci_vzbrcp.fvtenant</li></ul>|
-|[cisco_aci_fvctx](develop/lib/puppet/type/cisco_aci_fvctx.rb)|  A Virtual Routing and Forwarding (VRF) object or context is a tenant network. <br /> **Documentation:** [`fvCtx`](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html) <br />  **APIC GUI:** https://\<apic.example.com\>/#bTenants:\<tenant name\>\| uni/tn-\<tenant name\>/ctx-<bridge domain name\>   |**Instance Identifiers**  <br /> <ul><li>cisco_aci_fvctx.name</li></ul><br /> **Parent Identifiers** <br /> <ul><li>cisco_aci_fvctx.fvtenant</li></ul>|
-|[cisco_aci_vzfilter](lib/puppet/type/cisco_aci_vzfilter.rb)|  Represents a Filter within the policy model. <br /> **Documentation:** [`vzFilter`](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html) <br />  **APIC GUI:** https://\<apic.example.com\>/#bTenants:\<tenant name\>\| uni/tn-\<tenant name\>/flt-<filter name\>   |**Instance Identifiers**  <br /> <ul><li>cisco_aci_vzfilter.name</li></ul><br />**Parent Identifiers** <br /><ul><li> cisco_aci_vzfilter.fvtenant</li></ul>|
-|[cisco_aci_fvaepg](lib/puppet/type/cisco_aci_fvaepg.rb)|  An EPG is a managed object that is a named logical entity that contains a collection of endpoints.   <br /> **Documentation:** [`fvAEpg`](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html) <br />  **APIC GUI:** https://\<apic.example.com\>/#bTenants:\<tenant name\>\| uni/tn-\<tenant name\>/ap-<application profile name\>/epg-\<EPG name\>  |**Instance Identifiers**  <br /> <ul><li>cisco_aci_fvaepg.name</li></ul> <br/> **Parent Identifiers** <br /><ul><li>cisco_aci_fvaepg.fvtenant</li><li>cisco_aci_fvaepg.fvap</li></ul>|
-|[cisco_aci_fvsubnet](lib/puppet/type/cisco_aci_fvsubnet.rb)| Represents a subnet in the policy model. <br /> **Documentation:** [`fvSubnet`](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html) <br /> **APIC GUI:** https://\<apic.example.com\>/#bTenants:\<tenant name\>\| uni/tn-\<tenant name\>/BD-<bridge doamin name\>/subnet-\<ip/mask\> |**Instance Identifiers**  <br /> <ul><li>cisco_aci_fvsubnet.ip</li></ul><br />**Parent Identifiers** <br /><ul><li>cisco_aci_fvsubnet.fvtenant</li><li>cisco_aci_fvsubnet.fvbd</li></ul>|
-|[cisco_aci_vzsubj](lib/puppet/type/cisco_aci_vzsubj.rb)| Subject labels that are applied to EPGs. <br /> **Documentation:** [`vzSubj`](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html)  <br />  **APIC GUI:** https://\<apic.example.com\>/#bTenants:\<tenant name\>\| uni/tn-\<tenant name\>/brc-<contract name\>/subj-\<subject name\> |**Instance Identifiers**  <br /> <ul><li>cisco_aci_vzsubj.name</li></ul><br />**Parent Identifiers** <br /><ul><li>cisco_aci_vzsubj.fvtenant</li><li>cisco_aci_vzsubj.fvap</li></ul>|
-|[cisco_aci_vzentry](lib/puppet/type/cisco_aci_vzentry.rb)| A filter entry is a combination of network traffic classification properties.  <br /> **Documentation:** [`vzEntry`](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html) <br />  **APIC GUI:** https://\<apic.example.com\>/#bTenants:\<tenant name\>\| uni/tn-\<tenant name\>/flt-<filter name\>/e-<entry name>|**Instance Identifiers**  <br /> <ul><li>cisco_aci_vzentry.name</li></ul><br />**Parent Identifiers** <br /><ul><li>cisco_aci_vzentry.fvtenant</li><li>cisco_aci_vzentry.vzfilter</li></ul>|
-
 ### Troubleshooting
 
 The focus of this section is to present a high level approach to narrow down issues encountered during the usage of this module. Issues can be broadly categorized into five different buckets: (i) Issues during setup (ii) Issues during execution of `puppet agent` (iii) Issues during execution of `puppet device` (iv) Issues during the usage of the `cisco_aci` module and (v) Issues originating from APIC.
@@ -678,3 +663,1018 @@ The second exception is generated when the APIC encounters errors while processi
 ## Limitations
 
 This Puppet Module requires a `Puppet Agent` version `5.5` or later. A `Puppet Server` version `5.3` or later is recommended. This module has been tested with APIC running 3.3.1
+
+## Reference
+
+Puppet Types supported by this module correspond to ACI Managed Objects. Documentation for the types are derived from the corresponding Managed documentation available at the following [URL](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs). For the most up-to-date information please refer to the aforementioned URL.
+
+### Cisco ACI Resource Type Catalog
+<br />
+
+  *[`cisco_aci_fvaepg`](#type-cisco_aci_fvaepg)
+
+
+  *[`cisco_aci_fvap`](#type-cisco_aci_fvap)
+
+
+  *[`cisco_aci_fvbd`](#type-cisco_aci_fvbd)
+
+
+  *[`cisco_aci_fvctx`](#type-cisco_aci_fvctx)
+
+
+  *[`cisco_aci_fvsubnet`](#type-cisco_aci_fvsubnet)
+
+
+  *[`cisco_aci_fvtenant`](#type-cisco_aci_fvtenant)
+
+
+  *[`cisco_aci_rest`](#type-cisco_aci_rest)
+
+
+  *[`cisco_aci_vzbrcp`](#type-cisco_aci_vzbrcp)
+
+
+  *[`cisco_aci_vzentry`](#type-cisco_aci_vzentry)
+
+
+  *[`cisco_aci_vzfilter`](#type-cisco_aci_vzfilter)
+
+
+  *[`cisco_aci_vzsubj`](#type-cisco_aci_vzsubj)
+
+
+### Type: `cisco_aci_fvaepg`
+A set of requirements for the application-level EPG instance. The policy regulates connectivity and visibility among the end points within the scope of the policy.
+
+
+For up-to-date information on the Managed Object corresponding to this
+Puppet Type refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html)
+
+#### Example Usage
+```puppet
+#
+#Demo Resource data for resource cisco_aci_fvaepg
+#
+cisco_aci_fvaepg { 'test_epg1':
+  ensure             => 'present',
+  name               => 'test_epg1', #Instance Identifier
+  fvtenant           => 'test_tenant1', #Parent cisco_aci_fvtenant Identifier
+  fvap               => 'test_app1', #Parent cisco_aci_fvap Identifier
+  descr              => 'My EPF test_epg1 in the application profile test_app1 in tenant test_tenant1',
+  fwd_ctrl           => 'proxy-arp',
+  is_attr_based_e_pg => 'no',
+  match_t            => 'AtmostOne',
+  name_alias         => 'test_epg_1',
+  pc_enf_pref        => 'enforced',
+  pref_gr_memb       => 'include',
+  prio               => 'level2',
+}
+```
+
+#### Parameters
+
+##### `name`
+The name for the endpoint group.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#name)
+
+
+##### `fvtenant`
+Parent cisco_aci_fvtenant instance Identifier"
+
+##### `fvap`
+Parent cisco_aci_fvap instance Identifier"
+
+
+#### Properties
+##### `descr`
+Specifies the description of a policy component.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#descr)
+
+##### `fwd_ctrl`
+Forwarding Control.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#fwdCtrl)
+
+##### `is_attr_based_e_pg`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#isAttrBasedEPg)
+
+##### `match_t`
+The provider label match criteria.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#matchT)
+
+##### `name_alias`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#nameAlias)
+
+##### `pc_enf_pref`
+The preferred policy control.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#pcEnfPref)
+
+##### `pref_gr_memb`
+Represents parameter used to determine if EPg is part of a group that does not a contract for communication.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#prefGrMemb)
+
+##### `prio`
+The QoS priority class identifier.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#prio)
+
+
+### Type: `cisco_aci_fvap`
+The application profile is a set of requirements that an application instance has on the virtualizable fabric. The policy regulates connectivity and visibility among endpoints within the scope of the policy.
+
+
+For up-to-date information on the Managed Object corresponding to this
+Puppet Type refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html)
+
+#### Example Usage
+```puppet
+#
+#Demo Resource data for resource cisco_aci_fvap
+#
+cisco_aci_fvap { 'test_app1':
+  ensure     => 'present',
+  name       => 'test_app1', #Instance Identifier
+  fvtenant   => 'test_tenant1', #Parent cisco_aci_fvtenant Identifier
+  descr      => 'My test application profile tenant test_tenant1',
+  name_alias => 'test_app_1',
+  owner_key  => 'admin_cisco',
+  owner_tag  => 'cisco',
+  prio       => 'level3',
+}
+```
+
+#### Parameters
+
+##### `name`
+The name of the application profile.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html#name)
+
+
+##### `fvtenant`
+Parent cisco_aci_fvtenant instance Identifier"
+
+
+#### Properties
+##### `descr`
+Specifies a description of the policy definition root.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html#descr)
+
+##### `name_alias`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html#nameAlias)
+
+##### `owner_key`
+The key for enabling clients to own their data for entity correlation.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html#ownerKey)
+
+##### `owner_tag`
+A tag for enabling clients to add their own data. For example, to indicate who created this object.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html#ownerTag)
+
+##### `prio`
+The priority class identifier.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html#prio)
+
+
+### Type: `cisco_aci_fvbd`
+A bridge domain is a unique layer 2 forwarding domain that contains one or more subnets. Each bridge domain must be linked to a context.
+
+
+For up-to-date information on the Managed Object corresponding to this
+Puppet Type refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html)
+
+#### Example Usage
+```puppet
+#
+#Demo Resource data for resource cisco_aci_fvbd
+#
+cisco_aci_fvbd { 'test_bd1':
+  ensure                      => 'present',
+  name                        => 'test_bd1', #Instance Identifier
+  fvtenant                    => 'test_tenant1', #Parent cisco_aci_fvtenant Identifier
+  arp_flood                   => 'yes',
+  descr                       => 'My bridge domain in tenant test_tenant1',
+  ep_clear                    => 'no',
+  ep_move_detect_mode         => '',
+  intersite_bum_traffic_allow => 'no',
+  intersite_l2_stretch        => 'no',
+  ip_learning                 => 'yes',
+  limit_ip_learn_to_subnets   => 'yes',
+  ll_addr                     => '::',
+  mac                         => '00:22:BD:F8:19:FF',
+  mcast_allow                 => 'yes',
+  multi_dst_pkt_act           => 'encap-flood',
+  name_alias                  => 'test_bd_1',
+  optimize_wan_bandwidth      => 'no',
+  owner_key                   => 'admin_cisco',
+  owner_tag                   => 'cisco',
+  type                        => 'regular',
+  unicast_route               => 'yes',
+  unk_mac_ucast_act           => 'proxy',
+  unk_mcast_act               => 'opt-flood',
+  vmac                        => 'not-applicable',
+}
+```
+
+#### Parameters
+
+##### `name`
+The bridge domain name.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#name)
+
+
+##### `fvtenant`
+Parent cisco_aci_fvtenant instance Identifier"
+
+
+#### Properties
+##### `arp_flood`
+A property to specify whether ARP flooding is enabled. If flooding is disabled, unicast routing will be performed on the target IP address.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#arpFlood)
+
+##### `descr`
+Specifies a description of the policy definition root.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#descr)
+
+##### `ep_clear`
+Represents the parameter used by the node (i.e. Leaf) to clear all EPs in all leaves for this BD.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#epClear)
+
+##### `ep_move_detect_mode`
+The End Point move detection option uses the Gratuitous Address Resolution Protocol (GARP). A gratuitous ARP is an ARP broadcast-type of packet that is used to verify that no other device on the network has the same IP address as the sending device.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#epMoveDetectMode)
+
+##### `intersite_bum_traffic_allow`
+Control whether BUM traffic is allowed between sites.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#intersiteBumTrafficAllow)
+
+##### `intersite_l2_stretch`
+l2Stretch flag is enabled between sites.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#intersiteL2Stretch)
+
+##### `ip_learning`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#ipLearning)
+
+##### `limit_ip_learn_to_subnets`
+Limits IP address learning to the bridge domain subnets only. Every BD can have multiple subnets associated with it. By default, all IPs are learned.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#limitIpLearnToSubnets)
+
+##### `ll_addr`
+The override of the system generated IPv6 link-local address.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#llAddr)
+
+##### `mac`
+The MAC address of the bridge domain (BD) or switched virtual interface (SVI). Every BD by default takes the fabric wide default mac address. If user wants then he can override that address and with a different one By default the BD will take a 00:22:BD:F8:19:FF mac address.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#mac)
+
+##### `mcast_allow`
+Multicast. Flag to indicate if multicast is enabled.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#mcastAllow)
+
+##### `multi_dst_pkt_act`
+The multiple destination forwarding method for L2 Multicast, Broadcast, and Link Layer traffic types.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#multiDstPktAct)
+
+##### `name_alias`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#nameAlias)
+
+##### `optimize_wan_bandwidth`
+OptimizeWanBandwidth flag is enabled between sites.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#OptimizeWanBandwidth)
+
+##### `owner_key`
+The key for enabling clients to own their data for entity correlation.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#ownerKey)
+
+##### `owner_tag`
+A tag for enabling clients to add their own data. For example, to indicate who created this object.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#ownerTag)
+
+##### `type`
+The specific type of the object or component.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#type)
+
+##### `unicast_route`
+The forwarding method based on predefined forwarding criteria (IP or MAC address).
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#unicastRoute)
+
+##### `unk_mac_ucast_act`
+The forwarding method for unknown layer 2 destinations.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#unkMacUcastAct)
+
+##### `unk_mcast_act`
+The parameter used by the node (i.e. a leaf) for forwarding data for an unknown multicast destination.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#unkMcastAct)
+
+##### `vmac`
+Virtual MAC address of the BD/SVI. This is used when the BD is extended to multiple sites using l2 Outside.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#vmac)
+
+
+### Type: `cisco_aci_fvctx`
+The private layer 3 network context that belongs to a specific tenant or is shared.
+
+
+For up-to-date information on the Managed Object corresponding to this
+Puppet Type refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html)
+
+#### Example Usage
+```puppet
+#
+#Demo Resource data for resource cisco_aci_fvctx
+#
+cisco_aci_fvctx { 'test_vrf1':
+  ensure             => 'present',
+  name               => 'test_vrf1', #Instance Identifier
+  fvtenant           => 'test_tenant1', #Parent cisco_aci_fvtenant Identifier
+  bd_enforced_enable => 'no',
+  descr              => 'My VRF context in tenant test_tenant1',
+  knw_mcast_act      => 'permit',
+  name_alias         => 'test_vrf_1',
+  owner_key          => 'admin_cisco',
+  owner_tag          => 'cisco',
+  pc_enf_dir         => 'egress',
+  pc_enf_pref        => 'unenforced',
+}
+```
+
+#### Parameters
+
+##### `name`
+A name for the network context.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#name)
+
+
+##### `fvtenant`
+Parent cisco_aci_fvtenant instance Identifier"
+
+
+#### Properties
+##### `bd_enforced_enable`
+BD Enforced Flag.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#bdEnforcedEnable)
+
+##### `descr`
+Specifies a description of the policy definition root.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#descr)
+
+##### `knw_mcast_act`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#knwMcastAct)
+
+##### `name_alias`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#nameAlias)
+
+##### `owner_key`
+The key for enabling clients to own their data for entity correlation.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#ownerKey)
+
+##### `owner_tag`
+A tag for enabling clients to add their own data. For example, to indicate who created this object.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#ownerTag)
+
+##### `pc_enf_dir`
+Policy Control Enforcement Direction. It is used for defining policy enforcemnt direction for the traffic coming to or from an L3Out. Egress and Ingress directions are wrt L3Out. Default will be Ingress. But on the existing L3Outs during upgrade it will get set to Egress so that right after upgrade behavior doesnt change for them. This also means that there is no special upgrade sequence needed for upgrading to the release introducing this feature. After upgrade user would have to change the property value to Ingress. Once changed, system will reprogram the rules and prefix entry. Rules will get removed from the egress leaf and will get insatlled on the ingress leaf. Actrl prefix entry, if not already, will get installed on the ingress leaf. This feature will be ignored for the following cases 1. Golf Gets applied at Ingress by design. 2. Transit Rules get applied at Ingress by design. 4. vzAny 5. Taboo
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#pcEnfDir)
+
+##### `pc_enf_pref`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#pcEnfPref)
+
+
+### Type: `cisco_aci_fvsubnet`
+A subnet defines the IP address range that can be used within the bridge domain. While a context defines a unique layer 3 space, that space can consist of multiple subnets. These subnets are defined per bridge domain. A bridge domain can contain multiple subnets, but a subnet is contained within a single bridge domain.
+
+
+For up-to-date information on the Managed Object corresponding to this
+Puppet Type refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html)
+
+#### Example Usage
+```puppet
+#
+#Demo Resource data for resource cisco_aci_fvsubnet
+#
+cisco_aci_fvsubnet { '20.20.20.1/24':
+  ensure     => 'present',
+  ip         => '20.20.20.1/24', #Instance Identifier
+  fvtenant   => 'test_tenant1', #Parent cisco_aci_fvtenant Identifier
+  fvbd       => 'test_bd1', #Parent cisco_aci_fvbd Identifier
+  ctrl       => 'nd,no-default-gateway,querier',
+  descr      => 'My subnet subnet1 in bridge domain test_bd1 in tenant test_tenant1',
+  name       => 'subnet1',
+  name_alias => 'subnet_1',
+  preferred  => 'yes',
+  scope      => 'private,shared',
+  virtual    => 'yes',
+}
+```
+
+#### Parameters
+
+##### `ip`
+The IP address and mask of the default gateway.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#ip)
+
+
+##### `fvtenant`
+Parent cisco_aci_fvtenant instance Identifier"
+
+##### `fvbd`
+Parent cisco_aci_fvbd instance Identifier"
+
+
+#### Properties
+##### `ctrl`
+The subnet control state. The control can be specific protocols applied to the subnet such as IGMP Snooping.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#ctrl)
+
+##### `descr`
+Specifies the description of a policy component.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#descr)
+
+##### `name`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#name)
+
+##### `name_alias`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#nameAlias)
+
+##### `preferred`
+Indicates if the subnet is preferred (primary) over the available alternatives. Only one preferred subnet is allowed.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#preferred)
+
+##### `scope`
+The network visibility of the subnet.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#scope)
+
+##### `virtual`
+Treated as virtual IP address. Used in case of BD extended to multiple sites.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#virtual)
+
+
+### Type: `cisco_aci_fvtenant`
+A policy owner in the virtual fabric. A tenant can be either a private or a shared entity. For example, you can create a tenant with contexts and bridge domains shared by other tenants. A shared type of tenant is typically named common, default, or infra.
+
+
+For up-to-date information on the Managed Object corresponding to this
+Puppet Type refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html)
+
+#### Example Usage
+```puppet
+#
+#Demo Resource data for resource cisco_aci_fvtenant
+#
+cisco_aci_fvtenant { 'test_tenant1':
+  ensure     => 'present',
+  name       => 'test_tenant1', #Instance Identifier
+  descr      => 'My test tenant',
+  name_alias => 'test_tenant_1',
+  owner_key  => 'admin_cisco',
+  owner_tag  => 'cisco',
+}
+```
+
+#### Parameters
+
+##### `name`
+The name of the tenant.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html#name)
+
+
+
+#### Properties
+##### `descr`
+The description of the tenant.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html#descr)
+
+##### `name_alias`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html#nameAlias)
+
+##### `owner_key`
+The key for enabling clients to own their data for entity correlation.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html#ownerKey)
+
+##### `owner_tag`
+A tag for enabling clients to add their own data. For example, to indicate who created this object.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html#ownerTag)
+
+### Type: cisco_aci_rest
+Configures ACI using REST APIs
+
+#### Example Usage
+```puppet
+  #
+  #Demo Resource data for resource cisco_aci_rest
+  #
+  cisco_aci_rest {'configure_tenant':
+    http_request_type => post,
+    resource_uri      => '/api/mo/uni.json',
+    http_request_body => '{
+      "fvTenant": {
+        "attributes": {
+           "name": "puppet_test"
+        }
+      }
+    }',
+  }
+```
+
+#### Parameters
+
+##### `name`
+Name of the cisco_aci_rest resource
+
+#### Properties
+
+##### `resource_uri`
+URI being used to execute API calls. Only JSON format is supported. Eg: '/api/mo/uni.json'
+
+##### `http_request_body`
+Configuration of the ACI MO in json format.
+```puppet
+  {
+    "fvTenant": {
+      "attributes": {
+        "name": "puppet_test"
+      }
+    }
+  }
+```
+
+### Type: `cisco_aci_vzbrcp`
+A contract is a logical container for the subjects which relate to the filters that govern the rules for communication between endpoint groups (EPGs). Without a contract, the default forwarding policy is to not allow any communication between EPGs but all communication within an EPG is allowed.
+
+
+For up-to-date information on the Managed Object corresponding to this
+Puppet Type refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html)
+
+#### Example Usage
+```puppet
+#
+#Demo Resource data for resource cisco_aci_vzbrcp
+#
+cisco_aci_vzbrcp { 'test_contract1':
+  ensure      => 'present',
+  name        => 'test_contract1', #Instance Identifier
+  fvtenant    => 'test_tenant1', #Parent cisco_aci_fvtenant Identifier
+  descr       => 'My contract test_contract1 on my tenant test_tenant1',
+  name_alias  => 'test_contract_1',
+  owner_key   => 'admin_cisco',
+  owner_tag   => 'cisco',
+  prio        => 'level1',
+  scope       => 'global',
+  target_dscp => 'CS3',
+}
+```
+
+#### Parameters
+
+##### `name`
+Name of a contract to apply between two or more EPGs under the Application Profile.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#name)
+
+
+##### `fvtenant`
+Parent cisco_aci_fvtenant instance Identifier"
+
+
+#### Properties
+##### `descr`
+Specifies a description of the policy definition.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#descr)
+
+##### `name_alias`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#nameAlias)
+
+##### `owner_key`
+The key for enabling clients to own their data for entity correlation.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#ownerKey)
+
+##### `owner_tag`
+A tag for enabling clients to add their own data. For example, to indicate who created this object.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#ownerTag)
+
+##### `prio`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#prio)
+
+##### `scope`
+Represents the scope of this contract. If the scope is set as application- profile, the epg can only communicate with epgs in the same application-profile
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#scope)
+
+##### `target_dscp`
+The target differentiated services code point (DSCP) of the path attached to the layer 3 outside profile.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#targetDscp)
+
+
+### Type: `cisco_aci_vzentry`
+A filter entry is a combination of network traffic classification properties.
+
+
+For up-to-date information on the Managed Object corresponding to this
+Puppet Type refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html)
+
+#### Example Usage
+```puppet
+#
+#Demo Resource data for resource cisco_aci_vzentry
+#
+cisco_aci_vzentry { 'test_filter_entry1':
+  ensure        => 'present',
+  name          => 'test_filter_entry1', #Instance Identifier
+  fvtenant      => 'test_tenant1', #Parent cisco_aci_fvtenant Identifier
+  vzfilter      => 'test_filter1', #Parent cisco_aci_vzfilter Identifier
+  apply_to_frag => 'no',
+  arp_opc       => 'reply',
+  d_from_port   => 'unspecified',
+  d_to_port     => 'unspecified',
+  descr         => 'My filter entry test_filter_entry1 for filter test_filter1 in tenant test_tenant1',
+  ether_t       => 'arp',
+  icmpv4_t      => 'unspecified',
+  icmpv6_t      => 'unspecified',
+  match_dscp    => 'unspecified',
+  name_alias    => 'test_filter_entry_1',
+  prot          => 'unspecified',
+  s_from_port   => 'unspecified',
+  s_to_port     => 'unspecified',
+  stateful      => 'no',
+  tcp_rules     => '',
+}
+```
+
+#### Parameters
+
+##### `name`
+The name of a filter entry. This name can be up to 64 alphanumeric characters. Note that you cannot change this name after the object has been saved.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#name)
+
+
+##### `fvtenant`
+Parent cisco_aci_fvtenant instance Identifier"
+
+##### `vzfilter`
+Parent cisco_aci_vzfilter instance Identifier"
+
+
+#### Properties
+##### `apply_to_frag`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#applyToFrag)
+
+##### `arp_opc`
+ARP opcodes.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#arpOpc)
+
+##### `d_from_port`
+Destination From Port.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#dFromPort)
+
+##### `d_to_port`
+Destination To Port.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#dToPort)
+
+##### `descr`
+Specifies the description of a policy component.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#descr)
+
+##### `ether_t`
+Ether type.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#etherT)
+
+##### `icmpv4_t`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#icmpv4T)
+
+##### `icmpv6_t`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#icmpv6T)
+
+##### `match_dscp`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#matchDscp)
+
+##### `name_alias`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#nameAlias)
+
+##### `prot`
+L3 Ip Protocol.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#prot)
+
+##### `s_from_port`
+Source From Port.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#sFromPort)
+
+##### `s_to_port`
+Source To Port.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#sToPort)
+
+##### `stateful`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#stateful)
+
+##### `tcp_rules`
+TCP Session Rules.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#tcpRules)
+
+
+### Type: `cisco_aci_vzfilter`
+A filter policy is a group of resolvable filter entries. Each filter entry is a combination of network traffic classification properties.
+
+
+For up-to-date information on the Managed Object corresponding to this
+Puppet Type refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html)
+
+#### Example Usage
+```puppet
+#
+#Demo Resource data for resource cisco_aci_vzfilter
+#
+cisco_aci_vzfilter { 'test_filter1':
+  ensure     => 'present',
+  name       => 'test_filter1', #Instance Identifier
+  fvtenant   => 'test_tenant1', #Parent cisco_aci_fvtenant Identifier
+  descr      => 'My filter test_filter1',
+  name_alias => 'test_filter_1',
+  owner_key  => 'admin_cisco',
+  owner_tag  => 'cisco',
+}
+```
+
+#### Parameters
+
+##### `name`
+The name of a filter policy. This name can be up to 64 alphanumeric characters. Note that you cannot change this name after the object has been saved.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html#name)
+
+
+##### `fvtenant`
+Parent cisco_aci_fvtenant instance Identifier"
+
+
+#### Properties
+##### `descr`
+Specifies a description of the policy definition.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html#descr)
+
+##### `name_alias`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html#nameAlias)
+
+##### `owner_key`
+The key for enabling clients to own their data for entity correlation.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html#ownerKey)
+
+##### `owner_tag`
+A tag for enabling clients to add their own data. For example, to indicate who created this object.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html#ownerTag)
+
+
+### Type: `cisco_aci_vzsubj`
+A subject is a sub-application running behind an endpoint group (for example, an Exchange server). A subject is parented by the contract, which can encapsulate multiple subjects. An endpoint group associated to a contract is providing one or more subjects or is communicating with the subject as a peer entity. An endpoint group always associates with a subject and defines rules under the association for consuming/providing/peer-to-peer communications to that subject.
+
+
+For up-to-date information on the Managed Object corresponding to this
+Puppet Type refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html)
+
+#### Example Usage
+```puppet
+#
+#Demo Resource data for resource cisco_aci_vzsubj
+#
+cisco_aci_vzsubj { 'test_subject1':
+  ensure        => 'present',
+  name          => 'test_subject1', #Instance Identifier
+  fvtenant      => 'test_tenant1', #Parent cisco_aci_fvtenant Identifier
+  vzbrcp        => 'test_contract1', #Parent cisco_aci_vzbrcp Identifier
+  cons_match_t  => 'AtleastOne',
+  descr         => 'My subject test_subject1 for contract test_contract1 in tenant test_tenant1',
+  name_alias    => 'test_subject_1',
+  prio          => 'level3',
+  prov_match_t  => 'AtleastOne',
+  rev_flt_ports => 'yes',
+  target_dscp   => 'CS3',
+}
+```
+
+#### Parameters
+
+##### `name`
+The name of a sub application running behind an endpoint group, such as an Exchange server. This name can be up to 64 alphanumeric characters. Note that you cannot change this name after the object has been saved.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#name)
+
+
+##### `fvtenant`
+Parent cisco_aci_fvtenant instance Identifier"
+
+##### `vzbrcp`
+Parent cisco_aci_vzbrcp instance Identifier"
+
+
+#### Properties
+##### `cons_match_t`
+The subject match criteria across consumers.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#consMatchT)
+
+##### `descr`
+Specifies the description of a policy component.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#descr)
+
+##### `name_alias`
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#nameAlias)
+
+##### `prio`
+The priority level of a sub application running behind an endpoint group, such as an Exchange server.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#prio)
+
+##### `prov_match_t`
+The subject match criteria across consumers.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#provMatchT)
+
+##### `rev_flt_ports`
+Enables the filter to apply on both ingress and egress traffic.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#revFltPorts)
+
+##### `target_dscp`
+The target differentiated services code point (DSCP) of the path attached to the layer 3 outside profile.
+
+
+For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#targetDscp)
+

@@ -5,7 +5,8 @@
 #
 # Puppet resource type for fvap
 # For documentation for the Managed Object corresponding to this Puppet Type
-# please refer to the following URL: https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html
+# please refer to the following URL
+# https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,7 +24,9 @@ Puppet::Type.newtype(:cisco_aci_fvap) do
   # ---------------------------------------------------------------
   # @doc entry to describe the resource and usage
   # ---------------------------------------------------------------
-  @doc = 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html'
+  @doc = 'The application profile is a set of requirements that an application instance
+  has on the virtualizable fabric. The policy regulates connectivity and
+  visibility among endpoints within the scope of the policy.'
 
   ensurable
   apply_to_device
@@ -35,7 +38,7 @@ Puppet::Type.newtype(:cisco_aci_fvap) do
     patterns << [
       /^(\S+)$/,
       [
-        [:name, identity]
+        [:name, identity],
       ],
     ]
     patterns
@@ -46,7 +49,7 @@ Puppet::Type.newtype(:cisco_aci_fvap) do
   # ---------------------------------------------------------------
 
   newparam(:name, namevar: true) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html#name'
+    desc 'The name of the application profile.'
   end
 
   # ---------------------------------------------------------------
@@ -62,22 +65,23 @@ Puppet::Type.newtype(:cisco_aci_fvap) do
   # ---------------------------------------------------------------
 
   newproperty(:descr) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html#descr'
+    desc 'Specifies a description of the policy definition root.'
   end
 
   newproperty(:name_alias) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html#nameAlias'
+    desc ''
   end
 
   newproperty(:owner_key) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html#ownerKey'
+    desc 'The key for enabling clients to own their data for entity correlation.'
   end
 
   newproperty(:owner_tag) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html#ownerTag'
+    desc 'A tag for enabling clients to add their own data. For example, to indicate who
+    created this object.'
   end
 
   newproperty(:prio) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html#prio'
+    desc 'The priority class identifier.'
   end
 end

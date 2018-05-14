@@ -5,7 +5,8 @@
 #
 # Puppet resource type for vzbrcp
 # For documentation for the Managed Object corresponding to this Puppet Type
-# please refer to the following URL: https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html
+# please refer to the following URL
+# https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,7 +24,10 @@ Puppet::Type.newtype(:cisco_aci_vzbrcp) do
   # ---------------------------------------------------------------
   # @doc entry to describe the resource and usage
   # ---------------------------------------------------------------
-  @doc = 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html'
+  @doc = 'A contract is a logical container for the subjects which relate to the filters
+  that govern the rules for communication between endpoint groups (EPGs). Without
+  a contract, the default forwarding policy is to not allow any communication
+  between EPGs but all communication within an EPG is allowed.'
 
   ensurable
   apply_to_device
@@ -35,7 +39,7 @@ Puppet::Type.newtype(:cisco_aci_vzbrcp) do
     patterns << [
       /^(\S+)$/,
       [
-        [:name, identity]
+        [:name, identity],
       ],
     ]
     patterns
@@ -46,7 +50,8 @@ Puppet::Type.newtype(:cisco_aci_vzbrcp) do
   # ---------------------------------------------------------------
 
   newparam(:name, namevar: true) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#name'
+    desc 'Name of a contract to apply between two or more EPGs under the Application
+    Profile.'
   end
 
   # ---------------------------------------------------------------
@@ -62,30 +67,33 @@ Puppet::Type.newtype(:cisco_aci_vzbrcp) do
   # ---------------------------------------------------------------
 
   newproperty(:descr) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#descr'
+    desc 'Specifies a description of the policy definition.'
   end
 
   newproperty(:name_alias) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#nameAlias'
+    desc ''
   end
 
   newproperty(:owner_key) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#ownerKey'
+    desc 'The key for enabling clients to own their data for entity correlation.'
   end
 
   newproperty(:owner_tag) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#ownerTag'
+    desc 'A tag for enabling clients to add their own data. For example, to indicate who
+    created this object.'
   end
 
   newproperty(:prio) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#prio'
+    desc ''
   end
 
   newproperty(:scope) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#scope'
+    desc 'Represents the scope of this contract. If the scope is set as application-
+    profile, the epg can only communicate with epgs in the same application-profile'
   end
 
   newproperty(:target_dscp) do
-    desc 'https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#targetDscp'
+    desc 'The target differentiated services code point (DSCP) of the path attached to
+    the layer 3 outside profile.'
   end
 end

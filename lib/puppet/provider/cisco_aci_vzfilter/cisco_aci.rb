@@ -5,7 +5,8 @@
 #
 # Puppet resource provider for vzfilter
 # For documentation for the Managed Object corresponding to this Puppet Type
-# please refer to the following URL: https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html
+# please refer to the following URL
+# https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -66,14 +67,14 @@ Puppet::Type.type(:cisco_aci_vzfilter).provide(:cisco_aci) do
   # Get a list of parent MOs (and their prefix) for this Puppet Type
   def self.parent_namevars
     {
-      fvtenant: 'tn'
+      fvtenant: 'tn',
     }
   end
 
   # Get the namevars for this Puppet Type
   def self.my_namevars
     [
-      :name
+      :name,
     ]
   end
 
