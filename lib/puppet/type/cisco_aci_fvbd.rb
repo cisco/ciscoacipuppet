@@ -93,7 +93,7 @@ Puppet::Type.newtype(:cisco_aci_fvbd) do
   end
 
   newproperty(:ip_learning) do
-    desc ''
+    desc 'Specify if IP learning should be enabled.'
   end
 
   newproperty(:limit_ip_learn_to_subnets) do
@@ -122,7 +122,7 @@ Puppet::Type.newtype(:cisco_aci_fvbd) do
   end
 
   newproperty(:name_alias) do
-    desc ''
+    desc 'Specify an alias for the Managed Object.'
   end
 
   newproperty(:optimize_wan_bandwidth) do

@@ -92,19 +92,19 @@ Puppet::Type.newtype(:cisco_aci_vzentry) do
   end
 
   newproperty(:icmpv4_t) do
-    desc ''
+    desc 'The ICMP v4 Type.'
   end
 
   newproperty(:icmpv6_t) do
-    desc ''
+    desc 'The ICMP v6 Typ'
   end
 
   newproperty(:match_dscp) do
-    desc ''
+    desc 'Specify DSCP constants.'
   end
 
   newproperty(:name_alias) do
-    desc ''
+    desc 'Specify an alias for the Managed Object.'
   end
 
   newproperty(:prot) do
@@ -120,7 +120,7 @@ Puppet::Type.newtype(:cisco_aci_vzentry) do
   end
 
   newproperty(:stateful) do
-    desc ''
+    desc 'Specify if stateful.'
   end
 
   newproperty(:tcp_rules) do

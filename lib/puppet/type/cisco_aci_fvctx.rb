@@ -72,11 +72,11 @@ Puppet::Type.newtype(:cisco_aci_fvctx) do
   end
 
   newproperty(:knw_mcast_act) do
-    desc ''
+    desc 'Specify knwMcastAct.'
   end
 
   newproperty(:name_alias) do
-    desc ''
+    desc 'Specify an alias for the Managed Object.'
   end
 
   newproperty(:owner_key) do
@@ -104,6 +104,6 @@ Puppet::Type.newtype(:cisco_aci_fvctx) do
   end
 
   newproperty(:pc_enf_pref) do
-    desc ''
+    desc 'The Policy Control Enforcement preference.'
   end
 end

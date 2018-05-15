@@ -77,7 +77,7 @@ Puppet::Type.newtype(:cisco_aci_fvaepg) do
   end
 
   newproperty(:is_attr_based_e_pg) do
-    desc ''
+    desc 'Specify if EPG is attribute based.'
   end
 
   newproperty(:match_t) do
@@ -85,7 +85,7 @@ Puppet::Type.newtype(:cisco_aci_fvaepg) do
   end
 
   newproperty(:name_alias) do
-    desc ''
+    desc 'Specify an alias for the Managed Object.'
   end
 
   newproperty(:pc_enf_pref) do

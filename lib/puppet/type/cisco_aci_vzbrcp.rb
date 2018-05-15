@@ -71,7 +71,7 @@ Puppet::Type.newtype(:cisco_aci_vzbrcp) do
   end
 
   newproperty(:name_alias) do
-    desc ''
+    desc 'Specify an alias for the Managed Object.'
   end
 
   newproperty(:owner_key) do
@@ -84,7 +84,7 @@ Puppet::Type.newtype(:cisco_aci_vzbrcp) do
   end
 
   newproperty(:prio) do
-    desc ''
+    desc 'Specify priority level.'
   end
 
   newproperty(:scope) do

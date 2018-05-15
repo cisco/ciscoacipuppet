@@ -83,7 +83,7 @@ Puppet::Type.newtype(:cisco_aci_vzsubj) do
   end
 
   newproperty(:name_alias) do
-    desc ''
+    desc 'Specify an alias for the Managed Object.'
   end
 
   newproperty(:prio) do
