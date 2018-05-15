@@ -11,7 +11,7 @@ rvm:
 before_install:
   - gem install rubocop
   - gem install puppet-lint
+  - bundle exec puppet-lint --no-autoloader_layout-check .
  
 script:
   - bundle exec rubocop
-  - bundle exec puppet-lint --no-autoloader_layout-check .
