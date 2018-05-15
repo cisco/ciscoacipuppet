@@ -68,7 +68,7 @@ Puppet::Type.newtype(:cisco_aci_vzentry) do
   # ---------------------------------------------------------------
 
   newproperty(:apply_to_frag) do
-    desc ''
+    desc 'Apply to fragment.'
   end
 
   newproperty(:arp_opc) do

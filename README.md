@@ -1461,6 +1461,7 @@ Parent cisco_aci_vzfilter instance Identifier"
 
 #### Properties
 ##### `apply_to_frag`
+Apply to fragment.  
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#applyToFrag)
