@@ -36,7 +36,7 @@ gem 'puppet', puppetversion
 gem 'facter', '>= 1.7.0'
 
 group :development, :acceptance_tests do
-  gem 'rake',                    require: false
+  gem 'rake', '< 11.0',          require: false
   gem 'rspec',                   require: false
   gem 'rspec-puppet',            require: false
   gem 'mocha',                   require: false
