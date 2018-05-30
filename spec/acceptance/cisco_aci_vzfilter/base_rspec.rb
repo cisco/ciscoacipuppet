@@ -25,15 +25,30 @@ describe 'vzfilter' do
     basedata = File.read(basedata_fname)
     it 'Create (ensure = present)' do
       manifest = "$override_ensure = present\n$override_descr = undef\n" + basedata
-      apply_manifest(manifest)
+      output = apply_manifest(manifest)
+      puts output
+      fail 'Failed in CREATE' unless output.include? "Changed 'name' from="
+      output = apply_manifest(manifest)
+      puts output
+      fail 'Failed in CREATE - Idempotence' if output.include? "Changed 'name' from="
     end
     it 'Modify description (ensure = present)' do
       manifest = "$override_ensure = present\n$override_descr = 'Rspec Modified'\n" + basedata
-      apply_manifest(manifest)
+      output = apply_manifest(manifest)
+      puts output
+      fail 'Failed in Modify' unless output.include? "Changed 'descr' from="
+      output = apply_manifest(manifest)
+      puts output
+      fail 'Failed in Modify - Idempotence' if output.include? "Changed 'descr' from="
     end
     it 'Delete (ensure = absent)' do
       manifest = "$override_ensure = absent\n$override_descr = undef\n" + basedata
-      apply_manifest(manifest)
+      output = apply_manifest(manifest)
+      puts output
+      fail 'Failed in DELETE' unless output.include? 'ensure: removed'
+      output = apply_manifest(manifest)
+      puts output
+      fail 'Failed in DELETE - Idempotence' if output.include? 'ensure: removed'
     end
   end
 end

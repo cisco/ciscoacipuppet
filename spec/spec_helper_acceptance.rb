@@ -35,7 +35,9 @@ def apply_manifest(manifest)
   create_remote_file(master, File.join(manifestdir, 'site.pp'), manifest)
   on master, "chown -R root:puppet #{manifestdir}"
   on master, "chmod -R 0755 #{manifestdir}"
-  on proxy, "/opt/puppetlabs/bin/puppet device --server #{master} "
+  on proxy, "/opt/puppetlabs/bin/puppet device --server #{master} " do
+    return stdout
+  end
 end
 
 def create_device_conf_on_proxy
@@ -48,7 +50,6 @@ RSpec.configure do |c|
   c.formatter = :documentation
   c. before :suite do
     master.add_env_var('PATH', '/opt/puppetlabs/bin')
-    copy_module_to(master, target_module_path: '/etc/puppetlabs/code/environments/production/modules')
     create_device_conf_on_proxy
   end
 end

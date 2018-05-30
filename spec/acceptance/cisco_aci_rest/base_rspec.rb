@@ -26,18 +26,33 @@ describe 'aci_rest' do
     it 'Create with POST request' do
       manifest = "$override_http_request_type = undef\n$override_resource_uri = undef\n"
       manifest = manifest + "$override_http_request_body = undef\n" + basedata
-      apply_manifest(manifest)
+      output = apply_manifest(manifest)
+      puts output
+      fail 'Failed in CREATE' unless output.include? "Changed 'name' from="
+      output = apply_manifest(manifest)
+      puts output
+      fail 'Failed in CREATE - Idempotence' if output.include? "Changed 'name' from="
     end
     it 'Modify object with POST request' do
       unmodified = "$override_http_request_type = undef\n$override_resource_uri = undef\n"
       modified = '{"fvTenant": {"attributes": {"name": "puppet_test", "descr": "modify descr"}}}'
       manifest = unmodified + "$override_http_request_body = '" + modified + "'\n\n" + basedata
-      apply_manifest(manifest)
+      output = apply_manifest(manifest)
+      puts output
+      fail 'Failed in Modify' unless output.include? "Changed 'descr' from="
+      output = apply_manifest(manifest)
+      puts output
+      fail 'Failed in Modify - Idempotence' if output.include? "Changed 'descr' from="
     end
     it 'Delete object with DELETE request' do
       manifest = "$override_http_request_type = 'delete'\n$override_resource_uri = '/api/mo/uni/tn-puppet_test.json'\n"
       manifest = manifest + "$override_http_request_body = undef\n" + basedata
-      apply_manifest(manifest)
+      output = apply_manifest(manifest)
+      puts output
+      fail 'Failed in DELETE' unless output.include? "ensure: removed"
+      output = apply_manifest(manifest)
+      puts output
+      fail 'Failed in DELETE - Idempotence' if output.include? "ensure: removed"
     end
   end
 end
