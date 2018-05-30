@@ -35,7 +35,7 @@ def apply_manifest(manifest)
   create_remote_file(master, File.join(manifestdir, 'site.pp'), manifest)
   on master, "chown -R root:puppet #{manifestdir}"
   on master, "chmod -R 0755 #{manifestdir}"
-  on proxy, "/opt/puppetlabs/bin/puppet device --server #{master} " do
+  on proxy, "/opt/puppetlabs/bin/puppet device --verbose --server #{master}" do
     return stdout
   end
 end
