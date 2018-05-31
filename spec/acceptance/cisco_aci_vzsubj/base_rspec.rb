@@ -23,6 +23,10 @@ describe 'vzsubj' do
   context 'Base acceptance test' do
     basedata_fname = File.dirname(__FILE__) + '/vzsubj_basedata.pp'
     basedata = File.read(basedata_fname)
+    it 'vzsubj Testcase Setup' do
+      manifest = "$override_ensure = absent\n$override_descr = undef\n" + basedata
+      apply_manifest(manifest)
+    end
     it 'Create (ensure = present)' do
       manifest = "$override_ensure = present\n$override_descr = undef\n" + basedata
       output = apply_manifest(manifest)
