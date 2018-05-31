@@ -28,10 +28,10 @@ describe 'aci_rest' do
       manifest = manifest + "$override_http_request_body = undef\n" + basedata
       output = apply_manifest(manifest)
       puts output
-      fail 'Failed in CREATE' unless output.include? "Objects changed - 1"
+      fail 'Failed in CREATE' unless output.include? 'Objects changed - 1'
       output = apply_manifest(manifest)
       puts output
-      fail 'Failed in CREATE - Idempotence' unless output.include? "Objects changed - 0"
+      fail 'Failed in CREATE - Idempotence' unless output.include? 'Objects changed - 0'
     end
     it 'Modify object with POST request' do
       unmodified = "$override_http_request_type = undef\n$override_resource_uri = undef\n"
@@ -39,10 +39,10 @@ describe 'aci_rest' do
       manifest = unmodified + "$override_http_request_body = '" + modified + "'\n\n" + basedata
       output = apply_manifest(manifest)
       puts output
-      fail 'Failed in Modify' unless output.include? "Objects changed - 1"
+      fail 'Failed in Modify' unless output.include? 'Objects changed - 1'
       output = apply_manifest(manifest)
       puts output
-      fail 'Failed in Modify - Idempotence' unless output.include? "Objects changed - 0"
+      fail 'Failed in Modify - Idempotence' unless output.include? 'Objects changed - 0'
     end
     it 'Delete object with DELETE request' do
       manifest = "$override_http_request_type = 'delete'\n$override_resource_uri = '/api/mo/uni/tn-puppet_test1.json'\n"

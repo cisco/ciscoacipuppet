@@ -3,9 +3,7 @@ require 'puppetlabs_spec_helper/rake_tasks'
 desc 'Task to build puppet module and install it'
 task :build do
   puppet_version = Facter.value(:puppetversion)
-  if puppet_version.nil?
-    fail "Can't find a puppet version."
-  end
+  fail "Can't find a puppet version." if puppet_version.nil?
   build_cmd = 'puppet module build'
   uninstall_cmd = 'puppet module uninstall cisco-cisco_aci'
   install_cmd = 'puppet module install pkg/cisco-cisco_aci*gz'
@@ -18,8 +16,6 @@ end
 desc 'run rspec'
 task :spec do
   rspec_cmd = 'rspec'
-  spec_files = ''
-
   RSPEC_OPTS = [
     '--color',
     '--format documentation',
