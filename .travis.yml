@@ -1,0 +1,19 @@
+# Use Docker inrfastructure
+sudo: false
+
+language: ruby
+cache: bundler
+
+rvm:
+  - 2.3.1
+  - 2.2.2
+
+before_install:
+  - gem install rubocop
+  - gem install puppet-lint
+ 
+script:
+  - bundle exec rubocop
+  - bundle exec puppet-lint --no-autoloader_layout-check ./manifests
+  - bundle exec puppet-lint --no-autoloader_layout-check ./examples
+  - bundle exec puppet-lint --no-autoloader_layout-check ./spec/acceptance

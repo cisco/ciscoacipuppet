@@ -1,5 +1,5 @@
 #
-# April 2018
+# May 2018
 #
 # Copyright (c) 2017-2018 Cisco and/or its affiliates.
 #
@@ -48,18 +48,18 @@ class cisco_aci::classes::cisco_aci_fvaepg (
     $override_descr = $fvaepg_descr,
 ) {
     cisco_aci_fvaepg {'deploy_fvaepg':
-          ensure => $override_ensure,
-          name => $fvaepg_name,
-          fvtenant => $fvaepg_fvtenant,
-          fvap => $fvaepg_fvap,
-          descr => $override_descr,
-          fwd_ctrl => $fvaepg_fwd_ctrl,
+          ensure             => $override_ensure,
+          name               => $fvaepg_name,
+          fvtenant           => $fvaepg_fvtenant,
+          fvap               => $fvaepg_fvap,
+          descr              => $override_descr,
+          fwd_ctrl           => $fvaepg_fwd_ctrl,
           is_attr_based_e_pg => $fvaepg_is_attr_based_e_pg,
-          match_t => $fvaepg_match_t,
-          name_alias => $fvaepg_name_alias,
-          pc_enf_pref => $fvaepg_pc_enf_pref,
-          pref_gr_memb => $fvaepg_pref_gr_memb,
-          prio => $fvaepg_prio,
+          match_t            => $fvaepg_match_t,
+          name_alias         => $fvaepg_name_alias,
+          pc_enf_pref        => $fvaepg_pc_enf_pref,
+          pref_gr_memb       => $fvaepg_pref_gr_memb,
+          prio               => $fvaepg_prio,
       }
 
 }

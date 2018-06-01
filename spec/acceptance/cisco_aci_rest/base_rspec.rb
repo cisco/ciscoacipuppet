@@ -19,22 +19,22 @@
 
 require_relative '../../spec_helper_acceptance'
 
-describe "aci_rest" do
-  context "Base acceptance test" do
-    basedata_fname = File.dirname(__FILE__) + "/aci_rest_basedata.pp"
+describe 'aci_rest' do
+  context 'Base acceptance test' do
+    basedata_fname = File.dirname(__FILE__) + '/aci_rest_basedata.pp'
     basedata = File.read(basedata_fname)
-    it "Create with POST request" do
+    it 'Create with POST request' do
       manifest = "$override_http_request_type = undef\n$override_resource_uri = undef\n"
       manifest = manifest + "$override_http_request_body = undef\n" + basedata
       apply_manifest(manifest)
     end
-    it "Modify object with POST request" do
+    it 'Modify object with POST request' do
       unmodified = "$override_http_request_type = undef\n$override_resource_uri = undef\n"
       modified = '{"fvTenant": {"attributes": {"name": "puppet_test", "descr": "modify descr"}}}'
       manifest = unmodified + "$override_http_request_body = '" + modified + "'\n\n" + basedata
       apply_manifest(manifest)
     end
-    it "Delete object with DELETE request" do
+    it 'Delete object with DELETE request' do
       manifest = "$override_http_request_type = 'delete'\n$override_resource_uri = '/api/mo/uni/tn-puppet_test.json'\n"
       manifest = manifest + "$override_http_request_body = undef\n" + basedata
       apply_manifest(manifest)

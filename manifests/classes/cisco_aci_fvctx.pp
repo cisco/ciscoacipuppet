@@ -1,5 +1,5 @@
 #
-# April 2018
+# May 2018
 #
 # Copyright (c) 2017-2018 Cisco and/or its affiliates.
 #
@@ -47,17 +47,17 @@ class cisco_aci::classes::cisco_aci_fvctx (
     $override_descr = $fvctx_descr,
 ) {
     cisco_aci_fvctx {'deploy_fvctx':
-          ensure => $override_ensure,
-          name => $fvctx_name,
-          fvtenant => $fvctx_fvtenant,
+          ensure             => $override_ensure,
+          name               => $fvctx_name,
+          fvtenant           => $fvctx_fvtenant,
           bd_enforced_enable => $fvctx_bd_enforced_enable,
-          descr => $override_descr,
-          knw_mcast_act => $fvctx_knw_mcast_act,
-          name_alias => $fvctx_name_alias,
-          owner_key => $fvctx_owner_key,
-          owner_tag => $fvctx_owner_tag,
-          pc_enf_dir => $fvctx_pc_enf_dir,
-          pc_enf_pref => $fvctx_pc_enf_pref,
+          descr              => $override_descr,
+          knw_mcast_act      => $fvctx_knw_mcast_act,
+          name_alias         => $fvctx_name_alias,
+          owner_key          => $fvctx_owner_key,
+          owner_tag          => $fvctx_owner_tag,
+          pc_enf_dir         => $fvctx_pc_enf_dir,
+          pc_enf_pref        => $fvctx_pc_enf_pref,
       }
 
 }

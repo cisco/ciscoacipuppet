@@ -1,5 +1,5 @@
 #
-# April 2018
+# May 2018
 #
 # Copyright (c) 2017-2018 Cisco and/or its affiliates.
 #
@@ -43,13 +43,13 @@ class cisco_aci::classes::cisco_aci_vzfilter (
     $override_descr = $vzfilter_descr,
 ) {
     cisco_aci_vzfilter {'deploy_vzfilter':
-          ensure => $override_ensure,
-          name => $vzfilter_name,
-          fvtenant => $vzfilter_fvtenant,
-          descr => $override_descr,
+          ensure     => $override_ensure,
+          name       => $vzfilter_name,
+          fvtenant   => $vzfilter_fvtenant,
+          descr      => $override_descr,
           name_alias => $vzfilter_name_alias,
-          owner_key => $vzfilter_owner_key,
-          owner_tag => $vzfilter_owner_tag,
+          owner_key  => $vzfilter_owner_key,
+          owner_tag  => $vzfilter_owner_tag,
       }
 
 }

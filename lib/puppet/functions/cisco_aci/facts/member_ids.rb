@@ -18,7 +18,6 @@
 # limitations under the License.
 
 Puppet::Functions.create_function(:'cisco_aci::facts::member_ids') do
-
   # Retrieve all aci fabric member ids
   #
   # @return [Array] ACI fabric member ids

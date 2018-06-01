@@ -1,11 +1,12 @@
 #
-# April 2018
+# May 2018
 #
 # Copyright (c) 2017-2018 Cisco and/or its affiliates.
 #
 # Puppet resource type for vzfilter
 # For documentation for the Managed Object corresponding to this Puppet Type
-# please refer to the following URL: https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html
+# please refer to the following URL
+# https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,7 +24,8 @@ Puppet::Type.newtype(:cisco_aci_vzfilter) do
   # ---------------------------------------------------------------
   # @doc entry to describe the resource and usage
   # ---------------------------------------------------------------
-  @doc = "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html"
+  @doc = 'A filter policy is a group of resolvable filter entries. Each filter entry is a
+  combination of network traffic classification properties.'
 
   ensurable
   apply_to_device
@@ -46,38 +48,36 @@ Puppet::Type.newtype(:cisco_aci_vzfilter) do
   # ---------------------------------------------------------------
 
   newparam(:name, namevar: true) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html#name"
+    desc 'The name of a filter policy. This name can be up to 64 alphanumeric characters.
+    Note that you cannot change this name after the object has been saved.'
   end
-
 
   # ---------------------------------------------------------------
   # Namevars (Parent Instance Identifiers)
   # ---------------------------------------------------------------
 
   newparam(:fvtenant, namevar: true) do
-    desc "Parent cisco_aci_fvtenant instance Identifier"
+    desc 'Parent cisco_aci_fvtenant instance Identifier'
   end
-
 
   # ---------------------------------------------------------------
   # Properties
   # ---------------------------------------------------------------
 
   newproperty(:descr) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html#descr"
+    desc 'Specifies a description of the policy definition.'
   end
 
   newproperty(:name_alias) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html#nameAlias"
+    desc 'Specify an alias for the Managed Object.'
   end
 
   newproperty(:owner_key) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html#ownerKey"
+    desc 'The key for enabling clients to own their data for entity correlation.'
   end
 
   newproperty(:owner_tag) do
-    desc "https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html#ownerTag"
+    desc 'A tag for enabling clients to add their own data. For example, to indicate who
+    created this object.'
   end
-
-
 end
