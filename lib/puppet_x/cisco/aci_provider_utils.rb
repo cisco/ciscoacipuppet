@@ -303,7 +303,7 @@ module PuppetX
           fab_mem_attrs << mem_attrs if mem_attrs
         end
         # Construct the custom ACI Fact Hash
-        { aci_fabric_members: fab_mem_attrs }
+        { 'aci_fabric_members': fab_mem_attrs }
       end
     end
   end
