@@ -42,7 +42,7 @@
 #
 # Copyright 2018 Your name here, unless otherwise noted.
 #
-class aci_puppet_module {
-
+class cisco_aci {
+  class { 'cisco_aci::install': }
 
 }
