@@ -1,5 +1,5 @@
 #
-# May 2018
+# June 2018
 #
 # Copyright (c) 2017-2018  Cisco and/or its affiliates.
 #
@@ -29,30 +29,30 @@ describe 'fvap' do
     end
     it 'Create (ensure = present)' do
       manifest = "$override_ensure = present\n$override_descr = undef\n" + basedata
-      output = apply_manifest(manifest)
+      output, error = apply_manifest(manifest)
       puts output
-      fail 'Failed in CREATE' unless output.include? "Changed 'name' from="
-      output = apply_manifest(manifest)
+      fail "Failed in CREATE \n #{error}" unless output.include? "Changed 'name' from="
+      output, error = apply_manifest(manifest)
       puts output
-      fail 'Failed in CREATE - Idempotence' if output.include? "Changed 'name' from="
+      fail "Failed in CREATE - Idempotence \n #{error}" if output.include? "Changed 'name' from="
     end
     it 'Modify description (ensure = present)' do
       manifest = "$override_ensure = present\n$override_descr = 'Rspec Modified'\n" + basedata
-      output = apply_manifest(manifest)
+      output, error = apply_manifest(manifest)
       puts output
-      fail 'Failed in Modify' unless output.include? "Changed 'descr' from="
-      output = apply_manifest(manifest)
+      fail "Failed in Modify \n #{error}" unless output.include? "Changed 'descr' from="
+      output, error = apply_manifest(manifest)
       puts output
-      fail 'Failed in Modify - Idempotence' if output.include? "Changed 'descr' from="
+      fail "Failed in Modify - Idempotence \n #{error}" if output.include? "Changed 'descr' from="
     end
     it 'Delete (ensure = absent)' do
       manifest = "$override_ensure = absent\n$override_descr = undef\n" + basedata
-      output = apply_manifest(manifest)
+      output, error = apply_manifest(manifest)
       puts output
-      fail 'Failed in DELETE' unless output.include? 'ensure: removed'
-      output = apply_manifest(manifest)
+      fail "Failed in DELETE \n #{error}" unless output.include? 'ensure: removed'
+      output, error = apply_manifest(manifest)
       puts output
-      fail 'Failed in DELETE - Idempotence' if output.include? 'ensure: removed'
+      fail "Failed in DELETE - Idempotence \n #{error}" if output.include? 'ensure: removed'
     end
   end
 end

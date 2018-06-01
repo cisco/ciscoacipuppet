@@ -36,7 +36,7 @@ def apply_manifest(manifest)
   on master, "chown -R root:puppet #{manifestdir}"
   on master, "chmod -R 0755 #{manifestdir}"
   on proxy, "/opt/puppetlabs/bin/puppet device --verbose --server #{master}" do
-    return stdout
+    return stdout, stderr
   end
 end
 
@@ -46,10 +46,25 @@ def create_device_conf_on_proxy
   create_remote_file(proxy, '/etc/puppetlabs/puppet/device.conf', conf)
 end
 
+def cleanup_certs
+  proxy = hosts_as('proxy').first
+  name = proxy[:aci_server_name]
+  on master, "puppet cert clean #{name}" do
+    puts stdout
+  end
+  on proxy, "find /opt/puppetlabs/puppet/cache/devices/#{name}/ssl -name #{name}.pem -delete" do
+    puts stdout
+  end
+  # on proxy, "puppet agent -t" do
+  #  puts stdout
+  # end
+end
+
 RSpec.configure do |c|
   c.formatter = :documentation
   c. before :suite do
     master.add_env_var('PATH', '/opt/puppetlabs/bin')
     create_device_conf_on_proxy
+    cleanup_certs
   end
 end
