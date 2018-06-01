@@ -302,8 +302,8 @@ module PuppetX
           mem_attrs = xtract_fabric_member_frm_dhcp_query(mem)
           fab_mem_attrs << mem_attrs if mem_attrs
         end
-        #Construct the custom ACI Fact Hash
-        {'aci_fabric_members'=>fab_mem_attrs}
+        # Construct the custom ACI Fact Hash
+        { 'aci_fabric_members': fab_mem_attrs }
       end
     end
   end
