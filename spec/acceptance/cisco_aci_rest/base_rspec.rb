@@ -40,7 +40,7 @@ describe 'aci_rest' do
       output, error = apply_manifest(manifest)
       puts output
       fail "Failed in Modify \n #{error}" unless output.include? 'Objects changed - 1'
-      output = apply_manifest(manifest)
+      output, error = apply_manifest(manifest)
       puts output
       fail "Failed in Modify - Idempotence \n #{error}" unless output.include? 'Objects changed - 0'
     end
