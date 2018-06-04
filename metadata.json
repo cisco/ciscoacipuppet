@@ -10,13 +10,9 @@
   "dependencies": [
     {
       "name": "tkishel/puppet_device",
-      "version_requirement": ">= 2.4.4" }
+      "version_requirement": ">= 2.4.4 < 3.0.0" }
   ],
   "requirements": [
-    {
-      "name": "pe",
-      "version_requirement": ">= 2017.3"
-    },
     {
       "name": "puppet",
       "version_requirement": ">= 5.5"
