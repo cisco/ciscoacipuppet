@@ -40,6 +40,15 @@ def apply_manifest(manifest)
   end
 end
 
+def run_test(manifest, msg)
+  output, error = apply_manifest(manifest)
+  puts output
+  fail "Failed in CREATE \n #{error}" unless output.include? msg
+  output, error = apply_manifest(manifest)
+  puts output
+  fail "Failed in CREATE - Idempotence \n #{error}" if output.include? msg
+end
+
 def create_device_conf_on_proxy
   proxy = hosts_as('proxy').first
   conf = "[#{proxy[:aci_server_name]}]\ntype apic\nurl https://#{proxy[:aci_user]}:#{proxy[:aci_password]}@#{proxy[:aci_ip]}/"
@@ -55,6 +64,9 @@ def cleanup_certs
   on proxy, "find /opt/puppetlabs/puppet/cache/devices/#{name}/ssl -name #{name}.pem -delete" do
     puts stdout
   end
+  # on proxy, "puppet agent -t" do
+  #  puts stdout
+  # end
 end
 
 RSpec.configure do |c|

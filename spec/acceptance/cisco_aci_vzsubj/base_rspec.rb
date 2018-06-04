@@ -29,30 +29,15 @@ describe 'vzsubj' do
     end
     it 'Create (ensure = present)' do
       manifest = "$override_ensure = present\n$override_descr = undef\n" + basedata
-      output, error = apply_manifest(manifest)
-      puts output
-      fail "Failed in CREATE \n #{error}" unless output.include? "Changed 'name' from="
-      output, error = apply_manifest(manifest)
-      puts output
-      fail "Failed in CREATE - Idempotence \n #{error}" if output.include? "Changed 'name' from="
+      run_test(manifest, "Changed 'name' from=")
     end
     it 'Modify description (ensure = present)' do
       manifest = "$override_ensure = present\n$override_descr = 'Rspec Modified'\n" + basedata
-      output, error = apply_manifest(manifest)
-      puts output
-      fail "Failed in Modify \n #{error}" unless output.include? "Changed 'descr' from="
-      output, error = apply_manifest(manifest)
-      puts output
-      fail "Failed in Modify - Idempotence \n #{error}" if output.include? "Changed 'descr' from="
+      run_test(manifest, "Changed 'descr' from=")
     end
     it 'Delete (ensure = absent)' do
       manifest = "$override_ensure = absent\n$override_descr = undef\n" + basedata
-      output, error = apply_manifest(manifest)
-      puts output
-      fail "Failed in DELETE \n #{error}" unless output.include? 'ensure: removed'
-      output, error = apply_manifest(manifest)
-      puts output
-      fail "Failed in DELETE - Idempotence \n #{error}" if output.include? 'ensure: removed'
+      run_test(manifest, 'ensure: removed')
     end
   end
 end
