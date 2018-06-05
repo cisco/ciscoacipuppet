@@ -64,9 +64,6 @@ def cleanup_certs
   on proxy, "find /opt/puppetlabs/puppet/cache/devices/#{name}/ssl -name #{name}.pem -delete" do
     puts stdout
   end
-  # on proxy, "puppet agent -t" do
-  #  puts stdout
-  # end
 end
 
 RSpec.configure do |c|
