@@ -763,7 +763,7 @@ Forwarding Control.
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#fwdCtrl)
 
 ##### `is_attr_based_e_pg`
-Specify if EPG is attribute based. 
+Specify if EPG is attribute based.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#isAttrBasedEPg)
@@ -775,7 +775,7 @@ The provider label match criteria.
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#matchT)
 
 ##### `name_alias`
-Specify an alias for the Managed Object. 
+Specify an alias for the Managed Object.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAEPg.html#nameAlias)
@@ -844,7 +844,7 @@ Specifies a description of the policy definition root.
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html#descr)
 
 ##### `name_alias`
-Specify an alias for the Managed Object. 
+Specify an alias for the Managed Object.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvAp.html#nameAlias)
@@ -959,7 +959,7 @@ l2Stretch flag is enabled between sites.
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#intersiteL2Stretch)
 
 ##### `ip_learning`
-Specify if IP learning should be enabled. 
+Specify if IP learning should be enabled.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#ipLearning)
@@ -995,7 +995,7 @@ The multiple destination forwarding method for L2 Multicast, Broadcast, and Link
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#multiDstPktAct)
 
 ##### `name_alias`
-Specify an alias for the Managed Object. 
+Specify an alias for the Managed Object.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvBD.html#nameAlias)
@@ -1109,7 +1109,7 @@ Specify knwMcastAct.
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#knwMcastAct)
 
 ##### `name_alias`
-Specify an alias for the Managed Object. 
+Specify an alias for the Managed Object.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#nameAlias)
@@ -1133,7 +1133,7 @@ Policy Control Enforcement Direction. It is used for defining policy enforcemnt 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#pcEnfDir)
 
 ##### `pc_enf_pref`
-The Policy Control Enforcement preference. 
+The Policy Control Enforcement preference.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvCtx.html#pcEnfPref)
@@ -1196,13 +1196,13 @@ Specifies the description of a policy component.
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#descr)
 
 ##### `name`
-The subnet name. 
+The subnet name.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#name)
 
 ##### `name_alias`
-Specify an alias for the Managed Object. 
+Specify an alias for the Managed Object.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvSubnet.html#nameAlias)
@@ -1266,7 +1266,7 @@ The description of the tenant.
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html#descr)
 
 ##### `name_alias`
-Specify an alias for the Managed Object. 
+Specify an alias for the Managed Object.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-fvTenant.html#nameAlias)
@@ -1373,7 +1373,7 @@ Specifies a description of the policy definition.
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#descr)
 
 ##### `name_alias`
-Specify an alias for the Managed Object. 
+Specify an alias for the Managed Object.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#nameAlias)
@@ -1391,7 +1391,7 @@ A tag for enabling clients to add their own data. For example, to indicate who c
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#ownerTag)
 
 ##### `prio`
-Specify priority level. 
+Specify priority level.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzBrCP.html#prio)
@@ -1462,7 +1462,7 @@ Parent cisco_aci_vzfilter instance Identifier"
 
 #### Properties
 ##### `apply_to_frag`
-Apply to fragment.  
+Apply to fragment.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#applyToFrag)
@@ -1498,25 +1498,25 @@ Ether type.
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#etherT)
 
 ##### `icmpv4_t`
-The ICMP v4 Type. 
+The ICMP v4 Type.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#icmpv4T)
 
 ##### `icmpv6_t`
-The ICMP v6 Typ
+The ICMP v6 Type.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#icmpv6T)
 
 ##### `match_dscp`
-Specify DSCP constants. 
+Specify DSCP constants.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#matchDscp)
 
 ##### `name_alias`
-Specify an alias for the Managed Object. 
+Specify an alias for the Managed Object.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzEntry.html#nameAlias)
@@ -1596,7 +1596,7 @@ Specifies a description of the policy definition.
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html#descr)
 
 ##### `name_alias`
-Specify an alias for the Managed Object. 
+Specify an alias for the Managed Object.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzFilter.html#nameAlias)
@@ -1671,7 +1671,7 @@ Specifies the description of a policy component.
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#descr)
 
 ##### `name_alias`
-Specify an alias for the Managed Object. 
+Specify an alias for the Managed Object.
 
 
 For supported values for this parameter please refer to the following [link](https://pubhub.devnetcloud.com/media/apic-mim-ref-311/docs/MO-vzSubj.html#nameAlias)

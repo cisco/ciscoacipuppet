@@ -1,5 +1,5 @@
 #
-# May 2018
+# June 2018
 #
 # Copyright (c) 2017-2018 Cisco and/or its affiliates.
 #
@@ -96,7 +96,7 @@ Puppet::Type.newtype(:cisco_aci_vzentry) do
   end
 
   newproperty(:icmpv6_t) do
-    desc 'The ICMP v6 Typ'
+    desc 'The ICMP v6 Type.'
   end
 
   newproperty(:match_dscp) do

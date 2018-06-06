@@ -26,18 +26,29 @@ describe 'aci_rest' do
     it 'Create with POST request' do
       manifest = "$override_http_request_type = undef\n$override_resource_uri = undef\n"
       manifest = manifest + "$override_http_request_body = undef\n" + basedata
-      apply_manifest(manifest)
+      output, error = apply_manifest(manifest)
+      puts output
+      fail "Failed in CREATE \n #{error}" unless output.include? 'Objects changed - 1'
+      output, error = apply_manifest(manifest)
+      puts output
+      fail "Failed in CREATE - Idempotence \n #{error}" unless output.include? 'Objects changed - 0'
     end
     it 'Modify object with POST request' do
       unmodified = "$override_http_request_type = undef\n$override_resource_uri = undef\n"
-      modified = '{"fvTenant": {"attributes": {"name": "puppet_test", "descr": "modify descr"}}}'
+      modified = '{"fvTenant": {"attributes": {"name": "puppet_test1", "descr": "modify descr"}}}'
       manifest = unmodified + "$override_http_request_body = '" + modified + "'\n\n" + basedata
-      apply_manifest(manifest)
+      output, error = apply_manifest(manifest)
+      puts output
+      fail "Failed in Modify \n #{error}" unless output.include? 'Objects changed - 1'
+      output, error = apply_manifest(manifest)
+      puts output
+      fail "Failed in Modify - Idempotence \n #{error}" unless output.include? 'Objects changed - 0'
     end
     it 'Delete object with DELETE request' do
-      manifest = "$override_http_request_type = 'delete'\n$override_resource_uri = '/api/mo/uni/tn-puppet_test.json'\n"
+      manifest = "$override_http_request_type = 'delete'\n$override_resource_uri = '/api/mo/uni/tn-puppet_test1.json'\n"
       manifest = manifest + "$override_http_request_body = undef\n" + basedata
-      apply_manifest(manifest)
+      puts apply_manifest(manifest)
+      puts apply_manifest(manifest)
     end
   end
 end

@@ -1,5 +1,5 @@
 #
-# May 2018
+# June 2018
 #
 # Copyright (c) 2017-2018  Cisco and/or its affiliates.
 #
@@ -23,17 +23,21 @@ describe 'fvctx' do
   context 'Base acceptance test' do
     basedata_fname = File.dirname(__FILE__) + '/fvctx_basedata.pp'
     basedata = File.read(basedata_fname)
+    it 'fvctx Testcase Setup' do
+      manifest = "$override_ensure = absent\n$override_descr = undef\n" + basedata
+      apply_manifest(manifest)
+    end
     it 'Create (ensure = present)' do
       manifest = "$override_ensure = present\n$override_descr = undef\n" + basedata
-      apply_manifest(manifest)
+      run_test(manifest, "Changed 'name' from=")
     end
     it 'Modify description (ensure = present)' do
       manifest = "$override_ensure = present\n$override_descr = 'Rspec Modified'\n" + basedata
-      apply_manifest(manifest)
+      run_test(manifest, "Changed 'descr' from=")
     end
     it 'Delete (ensure = absent)' do
       manifest = "$override_ensure = absent\n$override_descr = undef\n" + basedata
-      apply_manifest(manifest)
+      run_test(manifest, 'ensure: removed')
     end
   end
 end
