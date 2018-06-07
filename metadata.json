@@ -9,7 +9,7 @@
   "issues_url": "https://wwwin-github.cisco.com/agents/cisco-aci-puppet-module/issues",
   "dependencies": [
     {
-      "name": "tkishel/puppet_device",
+      "name": "puppetlabs/device_manager",
       "version_requirement": ">= 2.4.4 < 3.0.0" }
   ],
   "requirements": [
