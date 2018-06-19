@@ -30,7 +30,7 @@
 #        A sample hiera data file (demo_hiera_data.yaml is in this directory)
 
 node 'proxy-agent.example.com' {
-  puppet_device {'apic.example.com':
+  device_manager {'apic.example.com':
     type         => 'apic',  # Specifies the type of the device in device.conf.
     url          => 'https://username:password@apic.example.com', # Specifies the URL of the device in device.conf.
     run_interval =>  30,     # Execute `puppet device --target apic.example.com` every 30 minutes.

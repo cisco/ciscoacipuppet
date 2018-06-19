@@ -99,21 +99,21 @@ puppet module uninstall cisco-cisco_aci --ignore-changes
 # Install the new module from the Puppet Forge.
 puppet module install cisco-cisco_aci
 
-# Install the tkishel-puppet_device module from the Puppet Forge.
-puppet module install tkishel-puppet_device
+# Install the puppetlabs-device_manager module from the Puppet Forge.
+puppet module install puppetlabs-device_manager
 ```
-Please note that installation of the `cisco_aci` module will automatically install the [`tkishel-puppet_device` module from Puppet Forge](https://forge.puppet.com/tkishel/puppet_device) as a dependency along with any modules that [`tkishel-puppet_device` depends on](https://forge.puppet.com/tkishel/puppet_device/dependencies). For additional details on this module please refer to its documentation on the Puppet Forge [[link](https://forge.puppet.com/tkishel/puppet_device)]. That module automates the configuration of the `device.conf` file and provides an option to schedule execution of the `puppet device` command on the proxy agent.
+Please note that installation of the `cisco_aci` module will automatically install the [`puppetlabs-device_manager` module from Puppet Forge](https://forge.puppet.com/puppetlabs/device_manager) as a dependency along with any modules that [`puppetlabs-device_manager` depends on](https://forge.puppet.com/puppetlabs/device_manager/dependencies). For additional details on this module please refer to its documentation on the Puppet Forge [[link](https://forge.puppet.com/puppetlabs/device_manager)]. That module automates the configuration of the `device.conf` file and provides an option to schedule execution of the `puppet device` command on the proxy agent.
 
 #### Configure Puppet Manifest
 Network administrators must define a Puppet Manifest which configures both the proxy agent and the APIC device. This manifest must define two nodes: one for the proxy agent and the other for the APIC device.
 
 ##### Configure Proxy Node in the Manifest
-To configure the proxy agent, another Puppet Module will be used. For additional details on that module please refer to it's documentation [[link](https://forge.puppet.com/tkishel/puppet_device)].
+To configure the proxy agent, another Puppet Module will be used. For additional details on that module please refer to it's documentation [[link](https://forge.puppet.com/puppetlabs/device_manager)].
 
 ```puppet
 # Example:
 node 'proxy-agent.example.com' {
-  puppet_device {'apic.example.com':
+  device_manager {'apic.example.com':
     type             => 'apic',  # Specifies the type of the device in device.conf.
     url              => 'https://username:password@apic.example.com', # Specifies the URL of the device in device.conf.
     run_interval     =>  30,     # Execute `puppet device --target apic.example.com` every 30 minutes.
@@ -150,7 +150,7 @@ node 'apic.example.com' {
 ### Puppet Agent
 Any Linux or Windows system with proper network connectivity to the `Puppet Server` and the APIC can function as the proxy agent. Please ensure that `Puppet Agent` version `5.5` or greater is already [installed and configured](#https://puppet.com/docs/puppet/5.5/install_linux.html) on the node. After the installation of the `Puppet Agent`, the administrator can run the `puppet agent` command manually or periodically using the typical Puppet workflow.
 
-When the `Puppet Agent` runs, it synchronizes modules and obtains the catalog for the proxy agent. It also uses the `puppet_device` [resource](#https://forge.puppet.com/tkishel/puppet_device) module to (i) configure `device.conf` and (ii) schedule execution of the `puppet device` command using a Linux Cron Job or Windows Scheduled Task. The `puppet device` command requests certificates, collect facts, retrieves catalogs, and stores reports on behalf of the APIC, and applies catalogs to provision the APIC.
+When the `Puppet Agent` runs, it synchronizes modules and obtains the catalog for the proxy agent. It also uses the `device_manager` [resource](#https://forge.puppet.com/puppetlabs/device_manager) module to (i) configure `device.conf` and (ii) schedule execution of the `puppet device` command using a Linux Cron Job or Windows Scheduled Task. The `puppet device` command requests certificates, collect facts, retrieves catalogs, and stores reports on behalf of the APIC, and applies catalogs to provision the APIC.
 
 Since `puppet device` is executed as a background task, it is detached from the standard output. Therefore you will not see any debug or error messages in the console window. To ensure that everything is setup correctly, it is advised to run the `puppet device --verbose` command manually at least once and address any errors.
 
@@ -200,7 +200,7 @@ Contents of `/etc/puppetlabs/code/environments/production/manifests/site.pp`
 ```puppet
 node 'proxy-agent.example.com' {
   include cisco_aci
-  puppet_device {'apic.example.com':
+  device_manager {'apic.example.com':
     type             => 'apic',  # Specifies the type of the device in device.conf.
     url              => 'https://username:password@apic.example.com', # Specifies the URL of the device in device.conf.
     run_interval     =>  30,     # Execute `puppet device --target apic.example.com` every 30 minutes.
@@ -452,7 +452,7 @@ This module includes sample Puppet Manifest fragments that configure different P
 ```puppet
 # Proxy Agent Node Setup
 node 'proxy-agent.example.com' {
-  puppet_device {'apic.example.com':
+  device_manager {'apic.example.com':
     type             => 'apic',  # Specifies the type of the device in device.conf.
     url              => 'https://username:password@apic.example.com', # Specifies the URL of the device in device.conf.
     run_interval     =>  30,     # Execute `puppet device --target apic.example.com` every 30 minutes.
@@ -565,7 +565,7 @@ When administrators run `puppet agent -t` on the Linux server hosting the proxy 
     * Executing `puppet cert list` on `Puppet Server` should list the FQDN associated with the Linux server (hosting proxy agent)
     * Examine the `puppetserver-access.log` and `puppetserver.log` on `Puppet Server` (default location: /var/log/puppetlabs/puppetserver)
     * Ensure the Puppet manifest on `Puppet Server` contains an entry for the Linux node serving as the proxy node.
-    * If the optional module (tkishel-puppet_device)to help with management of `device.conf` for `puppet device` is used, it should create the configuration file in the `/etc/puppetlabs/puppet` directory. Ensure that this file has the desired configuration.
+    * If the optional module (puppetlabs-device_manager)to help with management of `device.conf` for `puppet device` is used, it should create the configuration file in the `/etc/puppetlabs/puppet` directory. Ensure that this file has the desired configuration.
 
 #### (2) Issues during execution of `puppet device`
 When the `puppet device` command is executed manually or periodically, it exchanges certificates with the server on behalf of APIC and fetches the catalog for the APIC node. This is a typical `Puppet Server` and `Puppet Agent` interaction. Follow the standard Puppet troubleshooting techniques to isolate the issue [[Puppet Troubleshooting](https://puppet.com/docs/pe/2017.3/troubleshooting/troubleshooting_communications_between_components.html)]. For troubleshooting details on the `puppet device` command refer to the corresponding document. A few quick tips are listed below.
@@ -583,7 +583,7 @@ When the `puppet device` command is executed manually or periodically, it exchan
 ##### Failures during the Fact from APIC
     Before processing the user intent from catalog, it will fetch Puppet Facts from APIC. When Puppet requests facts from APIC, it uses service provided by the `cisco_aci` module. To interact with the APIC, `cisco_aci` module performs authentication using the username and password specified in the `device.conf`. If the manual execution of `puppet device` command generates error messages related to authentication, following aspects should be examined.
       * Network connectivity between the Liux server and APIC
-      * username and password specified in the `device.conf`. If the optional tkishel-puppet_device  module is used to create the configuration file, verify the Puppet manifest. If a manually created `device.conf` is used, ensure that the URL specified is correct.
+      * username and password specified in the `device.conf`. If the optional puppetlabs-device_manager  module is used to create the configuration file, verify the Puppet manifest. If a manually created `device.conf` is used, ensure that the URL specified is correct.
       * Check log message on APIC
 
 #### (3) Issues during the usage of the `cisco_aci` module
@@ -607,12 +607,12 @@ When `puppet device` starts processing catalog it uses `cisco_aci` module to pro
 
   Debug output from the `puppet device` command execution will be displayed to the console window. The `debug` option in the device.conf is optional and generates additional debugging output related to the HTTP requests. For additional details on the `puppet device` command, refer to the [puppet documentation](https://puppet.com/docs/puppet/5.5/man/device.html) .
 
-  * If there is a need to debug the issue at a deeper level, another debug option can be enabled to dump the HTTP message exchange between the `puppet device` and APIC. To enable this message level debugging, set the `debug` option in the `device.conf` file. The change can be enabled by (i) manually editing the `device.conf` file on the Linux server serving as the `Proxy Agent` or (ii) specifying the debug option using tkishel-puppet_device module on the `Puppet Server`.
+  * If there is a need to debug the issue at a deeper level, another debug option can be enabled to dump the HTTP message exchange between the `puppet device` and APIC. To enable this message level debugging, set the `debug` option in the `device.conf` file. The change can be enabled by (i) manually editing the `device.conf` file on the Linux server serving as the `Proxy Agent` or (ii) specifying the debug option using puppetlabs-device_manager module on the `Puppet Server`.
 
     * Manually edit device.conf to enable HTTP packet level debug
     ```bash
     # Manually adding the debug option to the device.conf on the Linux server acting as the Proxy Agent
-    # If the administrator used the tkishel- puppet_device the file will be located in the /etc/puppetlabs/puppet directory
+    # If the administrator used the puppetlabs-device_manager the file will be located in the /etc/puppetlabs/puppet directory
     [apic.example.com]
     type apic
     url https://username:password@apic.example.com/
@@ -622,7 +622,7 @@ When `puppet device` starts processing catalog it uses `cisco_aci` module to pro
     ```puppet
     # This option requires administrator to execute `puppet agent -t` on the Linux server serving as the proxy agent
     node 'proxy-agent.example.com' {
-      puppet_device {'apic.example.com':
+      device_manager {'apic.example.com':
         #... Existing configuration
         debug            => True,  #Enabled # DEBUG:     
       }
