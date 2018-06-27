@@ -33,4 +33,4 @@ Initial EFT pre-release of the cisco_aci puppet module.
 - `cisco_aci_vzentry` type and provider.
 - `cisco_aci_rest` type and provider.
 
-[Unreleased]: https://github.com/cisco/cisco-network-puppet-module/compare/master...develop
+[Unreleased]: https://github.com/cisco/ciscoacipuppet/compare/master...develop
