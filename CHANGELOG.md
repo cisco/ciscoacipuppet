@@ -2,20 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [0.1.0] - 2018-06-27
 
-### New feature support
-#### Cisco Resources
-
-### Added
-
-### Changed
-
-### Removed
-
-### Resolved Issues
-
-## [0.1.0] - 2018-04-30
+Initial EFT pre-release of the cisco_aci puppet module.
 
 ### New feature support
 #### Resources
@@ -30,11 +19,3 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - `cisco_aci_vzsub` type and provider.
 - `cisco_aci_vzentry` type and provider.
 - `cisco_aci_rest` type and provider.
-
-### Added
-
-### Changed
-
-### Removed
-
-### Resolved Issues
