@@ -1,6 +1,6 @@
 {
   "name": "cisco-cisco_aci",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "cisco",
   "summary": "Puppet Module to configure ACI via APIC Controller",
   "license": "Apache-2.0",
