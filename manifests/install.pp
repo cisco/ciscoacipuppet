@@ -9,7 +9,7 @@ class cisco_aci::install {
 
   case $::operatingsystem {
     'CentOS': {
-      $packages = [ 'gcc', 'zlib-devel' ]
+      $packages = [ 'gcc', 'patch', 'zlib-devel' ]
 
       package { $packages:
         ensure  => present,
