@@ -4,9 +4,9 @@
   "author": "cisco",
   "summary": "Puppet Module to configure ACI via APIC Controller",
   "license": "Apache-2.0",
-  "source": "https://wwwin-github.cisco.com/agents/cisco-aci-puppet-module",
-  "project_page": "https://wwwin-github.cisco.com/agents/cisco-aci-puppet-module",
-  "issues_url": "https://wwwin-github.cisco.com/agents/cisco-aci-puppet-module/issues",
+  "source": "https://github.com/cisco/ciscoacipuppet",
+  "project_page": "https://github.com/cisco/ciscoacipuppet",
+  "issues_url": "https://github.com/cisco/ciscoacipuppet/issues",
   "dependencies": [
     {
       "name": "puppetlabs/device_manager",
