@@ -375,7 +375,7 @@ These custom facts can be accessed from within the Puppet Manifest using the typ
 
 Example:
 ```puppet
-if ${facts['aci_fabric_members'][0]['SAL1814PTC6']['nodeRole'] == 'leaf' {
+if $facts['aci_fabric_members'][0]['SAL1814PTC6']['nodeRole'] == 'leaf' {
   # Perform Action
 }
 ```
