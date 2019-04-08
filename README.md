@@ -15,7 +15,7 @@
       * [Install Puppet Module](#install-puppet-module)
       * [Configure Puppet Manifest](#configure-puppet-manifest)
         * [Configure Proxy Node in the Manifest](#configure-proxy-node-in-the-manifest)
-        * [Configure APIC Node in the Manifest](#configure-apic-node-in-the-manifest)   
+        * [Configure APIC Node in the Manifest](#configure-apic-node-in-the-manifest)
     * [Setup Puppet Agent](#puppet-agent)
     * [Setup Puppet Agent Authentication](#puppet-agent-authentication)
     * [Quick Start Configuration - Cut, Paste, and Run](#quick-start-with-aci_puppet_module)
@@ -113,10 +113,10 @@ To configure the proxy agent, another Puppet Module will be used. For additional
 ```puppet
 # Example:
 node 'proxy-agent.example.com' {
-  device_manager {'apic.example.com':
-    type             => 'apic',  # Specifies the type of the device in device.conf.
-    url              => 'https://username:password@apic.example.com', # Specifies the URL of the device in device.conf.
-    run_interval     =>  30,     # Execute `puppet device --target apic.example.com` every 30 minutes.
+  device_manager { 'apic.example.com':
+    type         => 'apic',  # Specifies the type of the device in device.conf.
+    url          => 'https://username:password@apic.example.com', # Specifies the URL of the device in device.conf.
+    run_interval => 30,     # Execute `puppet device --target apic.example.com` every 30 minutes.
   }
 }
 ```
@@ -129,21 +129,21 @@ To provision the ACI Fabric via the APIC, network administrators can use the res
 ```puppet
 # Example Option-1: Use Puppet component class
 node 'apic.example.com' {
-  class {"cisco_aci::classes::cisco_aci_fvtenant":
-      fvtenant_ensure => 'present',
-      fvtenant_name   => 'example_tenant',
-      fvtenant_descr  => 'This is an example tenant',
-   }
+  class { 'cisco_aci::classes::cisco_aci_fvtenant':
+     fvtenant_ensure => 'present',
+     fvtenant_name   => 'example_tenant',
+     fvtenant_descr  => 'This is an example tenant',
+  }
 }
 ```
 ```puppet
 # Example Option-2: Use Puppet Type resource
 node 'apic.example.com' {
-  cisco_aci_fvtenant { "demo_cisco_aci_fvtenant":
-      ensure => 'present',
-      name   => 'example_tenant',
-      descr  => 'This is an example tenant',
-   }
+  cisco_aci_fvtenant { 'demo_cisco_aci_fvtenant':
+    ensure => 'present',
+    name   => 'example_tenant',
+    descr  => 'This is an example tenant',
+  }
 }
 ```
 
@@ -200,14 +200,14 @@ Contents of `/etc/puppetlabs/code/environments/production/manifests/site.pp`
 ```puppet
 node 'proxy-agent.example.com' {
   include cisco_aci
-  device_manager {'apic.example.com':
-    type             => 'apic',  # Specifies the type of the device in device.conf.
-    url              => 'https://username:password@apic.example.com', # Specifies the URL of the device in device.conf.
-    run_interval     =>  30,     # Execute `puppet device --target apic.example.com` every 30 minutes.
+  device_manager { 'apic.example.com':
+    type         => 'apic',  # Specifies the type of the device in device.conf.
+    url          => 'https://username:password@apic.example.com', # Specifies the URL of the device in device.conf.
+    run_interval => 30,     # Execute `puppet device --target apic.example.com` every 30 minutes.
   }
 }
 node 'apic.example.com' {
-  cisco_aci_fvtenant {'test_tenant1':
+  cisco_aci_fvtenant { 'test_tenant1':
     ensure => 'present',
     name   => 'test_tenant1',
     descr  => 'My test tenant',
@@ -219,56 +219,56 @@ node 'apic.example.com' {
     descr    => 'My test application profile tenant test_tenant1',
   }
   cisco_aci_fvaepg { 'test_epg1':
-    ensure    => 'present',
-    name      => 'test_epg1',    # Instance Identifier
-    fvtenant  => 'test_tenant1', # Parent cisco_aci_fvtenant Identifier
-    fvap      => 'test_app1',    # Parent cisco_aci_fvap Identifier
-    descr     => 'My EPF test_epg1 in the application profile test_app1 in tenant test_tenant1',
+    ensure   => 'present',
+    name     => 'test_epg1',    # Instance Identifier
+    fvtenant => 'test_tenant1', # Parent cisco_aci_fvtenant Identifier
+    fvap     => 'test_app1',    # Parent cisco_aci_fvap Identifier
+    descr    => 'My EPF test_epg1 in the application profile test_app1 in tenant test_tenant1',
   }
   cisco_aci_fvbd { 'test_bd1':
-    ensure    => 'present',
-    name      => 'test_bd1',     # Instance Identifier
-    fvtenant  => 'test_tenant1', # Parent cisco_aci_fvtenant Identifier
-    descr     => 'My bridge domain in tenant test_tenant1',
+    ensure   => 'present',
+    name     => 'test_bd1',     # Instance Identifier
+    fvtenant => 'test_tenant1', # Parent cisco_aci_fvtenant Identifier
+    descr    => 'My bridge domain in tenant test_tenant1',
   }
   cisco_aci_fvctx { 'test_vrf1':
-    ensure    => 'present',
-    name      => 'test_vrf1',    # Instance Identifier
-    fvtenant  => 'test_tenant1', # Parent cisco_aci_fvtenant Identifier
-    descr     => 'My VRF context in tenant test_tenant1',
+    ensure   => 'present',
+    name     => 'test_vrf1',    # Instance Identifier
+    fvtenant => 'test_tenant1', # Parent cisco_aci_fvtenant Identifier
+    descr    => 'My VRF context in tenant test_tenant1',
   }
   cisco_aci_fvsubnet { 'subnet1':
-    ensure    => 'present',
-    ip        => '20.20.20.1/24', # Instance Identifier
-    fvtenant  => 'test_tenant1',  # Parent cisco_aci_fvtenant Identifier
-    fvbd      => 'test_bd1',      # Parent cisco_aci_fvbd Identifier
-    descr     => 'My subnet subnet1 in bridge domain test_bd1 in tenant test_tenant1',
+    ensure   => 'present',
+    ip       => '20.20.20.1/24', # Instance Identifier
+    fvtenant => 'test_tenant1',  # Parent cisco_aci_fvtenant Identifier
+    fvbd     => 'test_bd1',      # Parent cisco_aci_fvbd Identifier
+    descr    => 'My subnet subnet1 in bridge domain test_bd1 in tenant test_tenant1',
   }
   cisco_aci_vzbrcp { 'test_contract1':
-    ensure    => 'present',
-    name      => 'test_contract1', # Instance Identifier
-    fvtenant  => 'test_tenant1',   # Parent cisco_aci_fvtenant Identifier
-    descr     => 'My contract test_contract1 on my tenant test_tenant1',
+    ensure   => 'present',
+    name     => 'test_contract1', # Instance Identifier
+    fvtenant => 'test_tenant1',   # Parent cisco_aci_fvtenant Identifier
+    descr    => 'My contract test_contract1 on my tenant test_tenant1',
   }
   cisco_aci_vzfilter { 'test_filter1':
-    ensure    => 'present',
-    name      => 'test_filter1', # Instance Identifier
-    fvtenant  => 'test_tenant1', # Parent cisco_aci_fvtenant Identifier
-    descr     => 'My filter test_filter1',
+    ensure   => 'present',
+    name     => 'test_filter1', # Instance Identifier
+    fvtenant => 'test_tenant1', # Parent cisco_aci_fvtenant Identifier
+    descr    => 'My filter test_filter1',
   }
   cisco_aci_vzsubj { 'test_subject1':
-    ensure    => 'present',
-    name      => 'test_subject1',  # Instance Identifier
-    fvtenant  => 'test_tenant1',   # Parent cisco_aci_fvtenant Identifier
-    vzbrcp    => 'test_contract1', # Parent cisco_aci_vzbrcp Identifier
-    descr     => 'My subject test_subject1 for contract test_contract1 in tenant test_tenant1',
+    ensure   => 'present',
+    name     => 'test_subject1',  # Instance Identifier
+    fvtenant => 'test_tenant1',   # Parent cisco_aci_fvtenant Identifier
+    vzbrcp   => 'test_contract1', # Parent cisco_aci_vzbrcp Identifier
+    descr    => 'My subject test_subject1 for contract test_contract1 in tenant test_tenant1',
   }
   cisco_aci_vzentry { 'test_filter_entry1':
-    ensure    => 'present',
-    name      => 'test_filter_entry1', # Instance Identifier
-    fvtenant  => 'test_tenant1',       # Parent cisco_aci_fvtenant Identifier
-    vzfilter  => 'test_filter1',       # Parent cisco_aci_vzfilter Identifier
-    descr     => 'My filter entry test_filter_entry1 for filter test_filter1 in tenant test_tenant1',
+    ensure   => 'present',
+    name     => 'test_filter_entry1', # Instance Identifier
+    fvtenant => 'test_tenant1',       # Parent cisco_aci_fvtenant Identifier
+    vzfilter => 'test_filter1',       # Parent cisco_aci_vzfilter Identifier
+    descr    => 'My filter entry test_filter_entry1 for filter test_filter1 in tenant test_tenant1',
   }
   # Explicitly declare resources relationships.
   Cisco_aci_fvtenant['test_tenant1'] ->
@@ -322,7 +322,7 @@ root@proxy-agent:~# puppet device --verbose --target apic.example.com --resource
 
 * Check configuration using APIC GUI
 Login to the APIC GUI to validate the configuration provisioned by Puppet. For convenience, the provider for this module generates a Puppet [Notice](#https://puppet.com/docs/puppet/5.5/function.html#notice) log message with the URL corresponding to the APIC GUI. The reference section of this document captures the URL format for offline reference.
-```Puppet
+```puppet
 # Example output
 Notice: Cisco_aci_fvaepg[test_epg1](provider=cisco_aci): APIC GUI URI for provisioned resource https://apic.example.com/#bTenants:test_tenant1|uni/tn-test_tenant1/ap-test_app1/epg-[test_epg1]
 ```
@@ -452,10 +452,10 @@ This module includes sample Puppet Manifest fragments that configure different P
 ```puppet
 # Proxy Agent Node Setup
 node 'proxy-agent.example.com' {
-  device_manager {'apic.example.com':
-    type             => 'apic',  # Specifies the type of the device in device.conf.
-    url              => 'https://username:password@apic.example.com', # Specifies the URL of the device in device.conf.
-    run_interval     =>  30,     # Execute `puppet device --target apic.example.com` every 30 minutes.
+  device_manager { 'apic.example.com':
+    type         => 'apic',  # Specifies the type of the device in device.conf.
+    url          => 'https://username:password@apic.example.com', # Specifies the URL of the device in device.conf.
+    run_interval => 30,     # Execute `puppet device --target apic.example.com` every 30 minutes.
   }
 }
 # APIC Device Configuration
@@ -622,9 +622,9 @@ When `puppet device` starts processing catalog it uses `cisco_aci` module to pro
     ```puppet
     # This option requires administrator to execute `puppet agent -t` on the Linux server serving as the proxy agent
     node 'proxy-agent.example.com' {
-      device_manager {'apic.example.com':
+      device_manager { 'apic.example.com':
         #... Existing configuration
-        debug            => True,  #Enabled # DEBUG:     
+        debug => true,  #Enabled # DEBUG:
       }
     }
     ```
@@ -1291,7 +1291,7 @@ Configures ACI using REST APIs
   #
   #Demo Resource data for resource cisco_aci_rest
   #
-  cisco_aci_rest {'configure_tenant':
+  cisco_aci_rest { 'configure_tenant':
     http_request_type => post,
     resource_uri      => '/api/mo/uni.json',
     http_request_body => '{
